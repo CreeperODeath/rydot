@@ -1,7 +1,10 @@
 extends KinematicBody2D
 
 export var move_speed = 300.0
+onready var BulletInstance = preload("res://Bullet.tscn")
 var velocity = Vector2()
+var x_dir = 0
+var y_dir = 0
 
 func _ready():
 	pass
@@ -14,11 +17,13 @@ func _process(_delta):
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("E"):
-		pass
+		var Bullet = BulletInstance.instance()
+		Bullet.direction = Vector2(x_dir, y_dir)
+		get_parent().add_child(Bullet)
 
 func _physics_process(_delta):
-	var x_dir = 0
-	var y_dir = 0
+	x_dir = 0
+	y_dir = 0
 	if Input.is_action_pressed("move_left"):
 		x_dir -= 1
 		self.rotation_degrees = 270
