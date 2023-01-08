@@ -15,6 +15,7 @@ func check_win():
 
 
 func _process(_delta):
+#-------------------Shooty code--------------------
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("fire_right"):
@@ -35,6 +36,7 @@ func _process(_delta):
 		get_parent().add_child(Bullet)
 
 func _physics_process(_delta):
+	#----------------Movey Code-----------------
 	var x_dir = 0
 	var y_dir = 0
 	if Input.is_action_pressed("move_left"):
@@ -53,10 +55,6 @@ func _physics_process(_delta):
 		player_sprite.set_flip_h(true)
 	
 		
-
-
-
-
 	velocity.x = x_dir * move_speed
 	velocity.y = y_dir * move_speed
 	velocity = move_and_slide(velocity, velocity)
