@@ -3,8 +3,6 @@ extends KinematicBody2D
 export var move_speed = 300.0
 onready var BulletInstance = preload("res://Bullet.tscn")
 var velocity = Vector2()
-var x_dir = 0
-var y_dir = 0
 
 func _ready():
 	pass
@@ -16,34 +14,35 @@ func check_win():
 func _process(_delta):
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
-	if Input.is_action_just_pressed("E"):
+	if Input.is_action_just_pressed("fire_right"):
 		var Bullet = BulletInstance.instance()
-		Bullet.direction = Vector2(x_dir, y_dir)
+		Bullet.direction = Vector2(1, 0)
+		get_parent().add_child(Bullet)
+	if Input.is_action_just_pressed("fire_left"):
+		var Bullet = BulletInstance.instance()
+		Bullet.direction = Vector2(-1, 0)
+		get_parent().add_child(Bullet)
+	if Input.is_action_just_pressed("fire_up"):
+		var Bullet = BulletInstance.instance()
+		Bullet.direction = Vector2(0, -1)
+		get_parent().add_child(Bullet)
+	if Input.is_action_just_pressed("fire_down"):
+		var Bullet = BulletInstance.instance()
+		Bullet.direction = Vector2(0, 1)
 		get_parent().add_child(Bullet)
 
 func _physics_process(_delta):
-	x_dir = 0
-	y_dir = 0
+	var x_dir = 0
+	var y_dir = 0
 	if Input.is_action_pressed("move_left"):
 		x_dir -= 1
-		#self.rotation_degrees = 270
 	if Input.is_action_pressed("move_right"):
 		x_dir += 1
-		#self.rotation_degrees = 90
 	if Input.is_action_pressed("move_up"):
 		y_dir -= 1
-		#self.rotation_degrees = 0
 	if Input.is_action_pressed("move_down"):
 		y_dir += 1
-		#self.rotation_degrees = 180
-#	if Input.is_action_pressed("move_up") and Input.is_action_pressed("move_left"):
-#		self.rotation_degrees = 315
-#	if Input.is_action_pressed("move_up") and Input.is_action_pressed("move_right"):
-#		self.rotation_degrees = 45
-#	if Input.is_action_pressed("move_down") and Input.is_action_pressed("move_left"):
-#		self.rotation_degrees = 225
-#	if Input.is_action_pressed("move_down") and Input.is_action_pressed("move_right"):
-#		self.rotation_degrees = 135
+
 
 	velocity.x = x_dir * move_speed
 	velocity.y = y_dir * move_speed
