@@ -16,18 +16,22 @@ func _process(_delta):
 		get_tree().quit()
 	if Input.is_action_just_pressed("fire_right"):
 		var Bullet = BulletInstance.instance()
+		Bullet.position = self.position
 		Bullet.direction = Vector2(1, 0)
 		get_parent().add_child(Bullet)
 	if Input.is_action_just_pressed("fire_left"):
 		var Bullet = BulletInstance.instance()
+		Bullet.position = self.position
 		Bullet.direction = Vector2(-1, 0)
 		get_parent().add_child(Bullet)
 	if Input.is_action_just_pressed("fire_up"):
 		var Bullet = BulletInstance.instance()
+		Bullet.position = self.position
 		Bullet.direction = Vector2(0, -1)
 		get_parent().add_child(Bullet)
 	if Input.is_action_just_pressed("fire_down"):
 		var Bullet = BulletInstance.instance()
+		Bullet.position = self.position
 		Bullet.direction = Vector2(0, 1)
 		get_parent().add_child(Bullet)
 
