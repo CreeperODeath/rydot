@@ -21,24 +21,24 @@ func _physics_process(_delta):
 	var y_dir = 0
 	if Input.is_action_pressed("move_left"):
 		x_dir -= 1
-		self.rotation_degrees = 270
+		#self.rotation_degrees = 270
 	if Input.is_action_pressed("move_right"):
 		x_dir += 1
-		self.rotation_degrees = 90
+		#self.rotation_degrees = 90
 	if Input.is_action_pressed("move_up"):
 		y_dir -= 1
-		self.rotation_degrees = 0
+		#self.rotation_degrees = 0
 	if Input.is_action_pressed("move_down"):
 		y_dir += 1
-		self.rotation_degrees = 180
-	if Input.is_action_pressed("move_up") and Input.is_action_pressed("move_left"):
-		self.rotation_degrees = 315
-	if Input.is_action_pressed("move_up") and Input.is_action_pressed("move_right"):
-		self.rotation_degrees = 45
-	if Input.is_action_pressed("move_down") and Input.is_action_pressed("move_left"):
-		self.rotation_degrees = 225
-	if Input.is_action_pressed("move_down") and Input.is_action_pressed("move_right"):
-		self.rotation_degrees = 135
+		#self.rotation_degrees = 180
+#	if Input.is_action_pressed("move_up") and Input.is_action_pressed("move_left"):
+#		self.rotation_degrees = 315
+#	if Input.is_action_pressed("move_up") and Input.is_action_pressed("move_right"):
+#		self.rotation_degrees = 45
+#	if Input.is_action_pressed("move_down") and Input.is_action_pressed("move_left"):
+#		self.rotation_degrees = 225
+#	if Input.is_action_pressed("move_down") and Input.is_action_pressed("move_right"):
+#		self.rotation_degrees = 135
 
 	velocity.x = x_dir * move_speed
 	velocity.y = y_dir * move_speed
