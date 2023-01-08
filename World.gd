@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var MapInstance = preload("res://maps/test map.tscn")
+onready var PlayerInstance = preload("res://Player.tscn")
 
 var time = 600
 
@@ -9,7 +11,8 @@ func _on_Timer_timeout():
 
 
 func _ready():
-	pass # Replace with function body.
+	var Player = PlayerInstance.instance()
+	var Map = MapInstance.instance()
 
 
 #func _process(delta):
