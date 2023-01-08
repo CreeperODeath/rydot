@@ -2,9 +2,12 @@ extends KinematicBody2D
 
 export var move_speed = 300.0
 onready var BulletInstance = preload("res://Bullet.tscn")
+onready var player_sprite = $AnimatedSprite
 var velocity = Vector2()
 var x_dir = 0
 var y_dir = 0
+
+var facing_left = true
 
 func _ready():
 	pass
@@ -26,24 +29,23 @@ func _physics_process(_delta):
 	y_dir = 0
 	if Input.is_action_pressed("move_left"):
 		x_dir -= 1
-		#self.rotation_degrees = 270
+		facing_left = true
 	if Input.is_action_pressed("move_right"):
 		x_dir += 1
-		#self.rotation_degrees = 90
+		facing_left = false
 	if Input.is_action_pressed("move_up"):
 		y_dir -= 1
-		#self.rotation_degrees = 0
 	if Input.is_action_pressed("move_down"):
 		y_dir += 1
-		#self.rotation_degrees = 180
-#	if Input.is_action_pressed("move_up") and Input.is_action_pressed("move_left"):
-#		self.rotation_degrees = 315
-#	if Input.is_action_pressed("move_up") and Input.is_action_pressed("move_right"):
-#		self.rotation_degrees = 45
-#	if Input.is_action_pressed("move_down") and Input.is_action_pressed("move_left"):
-#		self.rotation_degrees = 225
-#	if Input.is_action_pressed("move_down") and Input.is_action_pressed("move_right"):
-#		self.rotation_degrees = 135
+	if facing_left == true:
+		player_sprite.set_flip_h(false)
+	else:
+		player_sprite.set_flip_h(true)
+	
+		
+
+
+
 
 	velocity.x = x_dir * move_speed
 	velocity.y = y_dir * move_speed
