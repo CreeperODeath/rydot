@@ -13,6 +13,6 @@ autostart = true
 [node name="TileMap" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 257.681, 64.1939 )
+position = Vector2( 108, 84 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
