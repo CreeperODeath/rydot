@@ -12,7 +12,7 @@ var follow = false
 export var movment_up_down = true
 export var movment_flip = false
 var velocity = Vector2()
-export var speed = .5
+export var speed = 5
 var distance_to_player
 
 func _process(delta):
@@ -30,6 +30,7 @@ func _physics_process(delta):
 		
 
 func movement():
+	var collision
 	if follow == false:
 		if movment_up_down == false && movment_flip == false:
 			velocity.x = -speed
@@ -46,7 +47,7 @@ func movement():
 		else:
 			velocity.x = 0
 			
-		var collision = move_and_collide(velocity)
+		move_and_slide(velocity)
 		
 		if collision:
 			if movment_flip == false:
@@ -60,8 +61,17 @@ func movement():
 		if not player:
 			return
 		var dir = (player.global_position - global_position).normalized()
-		move_and_collide(dir * speed)
-			
+		collision = move_and_slide(dir * speed)
+		
+		
+		
+
+		
+func _on_hit_body_entered(body):
+	print("hit")
+	if body.is_in_group("damage_enemy"):
+		print("damage")
+		health -= 1
 		
 
 		
