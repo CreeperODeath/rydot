@@ -11,3 +11,7 @@ func _process(delta):
 	velocity.x = direction.x * speed
 	velocity.y = direction.y * speed
 	velocity = move_and_slide(velocity, velocity)
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("map"):
+		queue_free()
