@@ -23,7 +23,12 @@ height = 2.0
 [sub_resource type="CircleShape2D" id=3]
 radius = 87.0517
 
-[node name="KinematicBody2D" type="KinematicBody2D" groups=["1d4_damage", "enemy"]]
+[node name="KinematicBody2D" type="KinematicBody2D" groups=[
+"1d4_damage",
+"enemy",
+]]
+collision_layer = 4
+collision_mask = 15
 script = ExtResource( 2 )
 
 [node name="death_sound" type="AudioStreamPlayer" parent="."]
