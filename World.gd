@@ -2,6 +2,7 @@ extends Node2D
 
 onready var MapInstance = preload("res://maps/test map.tscn")
 onready var PlayerInstance = preload("res://Player.tscn")
+onready var BulletInstance = preload("res://Bullet.tscn")
 
 var time = 600
 
@@ -15,5 +16,6 @@ func _ready():
 	var Map = MapInstance.instance()
 
 
-#func _process(delta):
-#	pass
+func _process(delta):
+	if Input.is_action_just_pressed("E"):
+		var Bullet = BulletInstance.instance()
