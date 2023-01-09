@@ -16,3 +16,5 @@ position = Vector2( 240, 135 )
 [node name="start_room" parent="." instance=ExtResource( 2 )]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="start_room"]
