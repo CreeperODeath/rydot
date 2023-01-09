@@ -65,4 +65,5 @@ func _physics_process(_delta):
 		player_sprite.set_animation("idle") 
 	else:
 		player_sprite.set_animation("run") 
+		player_sprite.set_animation("run") 
 	velocity = move_and_slide(velocity, velocity)
