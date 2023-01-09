@@ -12,7 +12,7 @@ var follow = false
 export var movment_up_down = true
 export var movment_flip = false
 var velocity = Vector2()
-export var speed = 5
+export var speed = 10
 var distance_to_player
 
 func _process(delta):

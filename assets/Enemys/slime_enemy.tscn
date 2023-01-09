@@ -26,15 +26,13 @@ radius = 7.0
 height = 0.0
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 87.0517
+radius = 208.195
 
-[node name="KinematicBody2D" type="KinematicBody2D" groups=[
-"1d4_damage",
-"enemy",
-]]
+[node name="KinematicBody2D" type="KinematicBody2D" groups=["1d4_damage", "enemy"]]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource( 2 )
+speed = 30
 
 [node name="death_sound" type="AudioStreamPlayer" parent="."]
 process_priority = 1
@@ -61,7 +59,6 @@ position = Vector2( 0, 1 )
 shape = SubResource( 3 )
 
 [node name="vision" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="vision"]
