@@ -2,7 +2,7 @@ extends TileMap
 
 onready var room_var = room_variables.new()
 
-export var debug = true
+var debug = false
 
 
 
@@ -87,7 +87,7 @@ func spawn_room_left():
 	room_instence.global_position.x = left_node.global_position.x - 526
 	room_instence.position.y = position.y
 	left_spawned = true
-	print (room_id + " left room generation")
+	
 	
 	
 	
