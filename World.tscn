@@ -12,7 +12,7 @@ script = ExtResource( 1 )
 autostart = true
 
 [node name="Steam Trap" parent="." instance=ExtResource( 4 )]
-position = Vector2( -52.5829, 128.252 )
+position = Vector2( 72, 104 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 135 )
