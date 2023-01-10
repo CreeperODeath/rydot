@@ -414,7 +414,8 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 21/z_index = 0
 
 [node name="start_room" type="TileMap" groups=["map"]]
-z_index = -1
+z_index = -10
+z_as_relative = false
 tile_set = SubResource( 8 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 2
@@ -424,6 +425,7 @@ tile_data = PoolIntArray( 14, 7, 0, 15, 4, 0, 16, 3, 0, 17, 4, 0, 18, 9, 0, 6553
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
 position = Vector2( 70, 57 )
+z_as_relative = false
 
 [node name="room_connectors" type="Node" parent="."]
 

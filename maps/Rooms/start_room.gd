@@ -19,12 +19,12 @@ var right_spawned = false
 
 #---------top room var-----------
 onready var top_room = load(room_var.top_rooms[0])
-onready var top_node = $room_connectors/right
+onready var top_node = $room_connectors/top
 var top_spawned = false
 
 #---------bottom room var-----------
 onready var bottom_room = load(room_var.top_rooms[0])
-onready var bottom_node = $room_connectors/right
+onready var bottom_node = $room_connectors/bottom
 var bottom_spawned = false
 
 
@@ -37,12 +37,13 @@ export var top_opening = false
 export var bottom_opening = false
 
 func _physics_process(delta):
-	if left_spawned == false:
-		if is_instance_valid(left_room):
-			spawn_room_left()
-	if right_spawned == false:
-		if is_instance_valid(right_room):
-			spawn_room_right()
+	if top_spawned == false:
+		if is_instance_valid(top_room):
+			spawn_room_top()
+	
+			
+func room_spawn_check():
+	pass
 
 func spawn_room_left():
 	var room_instence = left_room.instance()
@@ -59,17 +60,17 @@ func spawn_room_right():
 	right_spawned = true
 	
 func spawn_room_top():
-	var room_instence = right_room.instance()
+	var room_instence = bottom_room.instance()
 	get_parent().add_child(room_instence)
-	room_instence.position.x = right_node.position.x - 9
-	room_instence.position.y = position.y
-	right_spawned = true
+	room_instence.position.y = top_node.position.y - 297
+	room_instence.position.x = position.x
+	top_spawned = true
 	
 	
 func spawn_room_bottom():
-	var room_instence = right_room.instance()
+	var room_instence = bottom_room.instance()
 	get_parent().add_child(room_instence)
-	room_instence.position.x = right_node.position.x - 9
-	room_instence.position.y = position.y
-	right_spawned = true
+	room_instence.position.y = bottom_node.position.y + 8
+	room_instence.position.x = position.x
+	bottom_spawned = true
 
