@@ -67,9 +67,7 @@ func movement():
 
 		
 func _on_hit_body_entered(body):
-	#print("hit")
 	if body.is_in_group("damage_enemy"):
-		#print("damage")
 		health -= 1
 		
 

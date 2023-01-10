@@ -95,7 +95,3 @@ func _physics_process(_delta):
 	velocity.x =  x_dir * move_speed
 	velocity.y =  y_dir * move_speed
 	velocity = move_and_slide(velocity, velocity)
-<<<<<<< Updated upstream
-	#print(x_dir)
-=======
->>>>>>> Stashed changes
