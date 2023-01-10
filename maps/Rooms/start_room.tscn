@@ -414,7 +414,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 21/shapes = [  ]
 21/z_index = 0
 
-[node name="start_room" type="TileMap" groups=["map"]]
+[node name="start_room2" type="TileMap" groups=["map"]]
 z_index = -1
 tile_set = SubResource( 8 )
 cell_size = Vector2( 16, 16 )

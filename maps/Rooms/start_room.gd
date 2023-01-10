@@ -35,15 +35,32 @@ export var left_opening = false
 export var right_opening = false
 export var top_opening = false
 export var bottom_opening = false
+var all_rooms_spawned = false
 
 func _physics_process(delta):
-	if bottom_spawned == false:
-		if is_instance_valid(bottom_room):
-			spawn_room_bottom()
+	if all_rooms_spawned != true:
+		room_spawn_check()
 	
 			
 func room_spawn_check():
-	pass
+	if left_opening == true:
+		if left_spawned == false:
+			if is_instance_valid(left_room):
+				spawn_room_left()
+	if right_opening == true:
+		if right_spawned == false:
+			if is_instance_valid(right_room):
+				spawn_room_right()
+	if top_opening == true:
+		if bottom_spawned == false:
+			if is_instance_valid(top_room):
+				spawn_room_top()
+	if bottom_opening == true:
+		if bottom_spawned == false:
+			if is_instance_valid(bottom_room):
+				spawn_room_bottom()
+	if top_opening == top_spawned and bottom_opening == bottom_spawned and left_opening == left_spawned and right_opening == right_spawned:
+		all_rooms_spawned = true
 
 func spawn_room_left():
 	var room_instence = left_room.instance()
