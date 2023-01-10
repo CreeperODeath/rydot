@@ -459,6 +459,7 @@ position = Vector2( 265, 296 )
 position = Vector2( 70, 57 )
 
 [node name="room detector" type="Node2D" parent="."]
+visible = false
 
 [node name="left_room_detector" type="Area2D" parent="room detector" groups=["room_detector"]]
 position = Vector2( 496, -3 )
@@ -489,6 +490,7 @@ position = Vector2( 254, 107 )
 shape = SubResource( 12 )
 
 [node name="room_indicator" type="Area2D" parent="." groups=["room"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="room_indicator" groups=["room"]]
 position = Vector2( 263, 153 )
