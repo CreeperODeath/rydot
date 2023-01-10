@@ -12,13 +12,10 @@ atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 13, 19 )
 
 [sub_resource type="AtlasTexture" id=3]
-<<<<<<< Updated upstream
-=======
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 13, 19 )
 
 [sub_resource type="AtlasTexture" id=4]
->>>>>>> Stashed changes
 atlas = ExtResource( 2 )
 region = Rect2( 13, 0, 13, 19 )
 
@@ -37,11 +34,7 @@ animations = [ {
 "name": "idle",
 "speed": 1.0
 }, {
-<<<<<<< Updated upstream
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-=======
 "frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
->>>>>>> Stashed changes
 "loop": true,
 "name": "run",
 "speed": 10.0
