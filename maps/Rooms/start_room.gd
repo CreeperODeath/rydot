@@ -18,7 +18,7 @@ onready var right_node = $room_connectors/right
 var right_spawned = false
 
 #---------top room var-----------
-onready var top_room = load(room_var.top_rooms[0])
+onready var top_room = load(room_var.get_room("top", room_id))
 onready var top_node = $room_connectors/top
 var top_spawned = false
 
@@ -36,9 +36,10 @@ export var right_opening = false
 export var top_opening = false
 export var bottom_opening = false
 var all_rooms_spawned = false
+export var spawn_active = false
 
 func _physics_process(delta):
-	if all_rooms_spawned != true:
+	if all_rooms_spawned != true and spawn_active == true:
 		room_spawn_check()
 	
 			
@@ -52,7 +53,7 @@ func room_spawn_check():
 			if is_instance_valid(right_room):
 				spawn_room_right()
 	if top_opening == true:
-		if bottom_spawned == false:
+		if top_spawned == false:
 			if is_instance_valid(top_room):
 				spawn_room_top()
 	if bottom_opening == true:
@@ -77,10 +78,10 @@ func spawn_room_right():
 	right_spawned = true
 	
 func spawn_room_top():
-	var room_instence = bottom_room.instance()
+	var room_instence = top_room.instance()
 	get_parent().add_child(room_instence)
-	room_instence.position.y = top_node.position.y - 297
-	room_instence.position.x = position.x
+	room_instence.global_position.y = top_node.global_position.y - 297
+	room_instence.global_position.x = global_position.x
 	top_spawned = true
 	
 	
