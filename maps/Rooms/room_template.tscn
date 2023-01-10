@@ -434,6 +434,8 @@ script = ExtResource( 3 )
 room_id = "basic_room"
 left_opening = true
 right_opening = true
+top_opening = true
+bottom_opening = true
 spawn_active = true
 
 [node name="room_connectors" type="Node2D" parent="."]

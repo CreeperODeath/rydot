@@ -84,7 +84,7 @@ func room_spawn_check():
 func spawn_room_left():
 	var room_instence = left_room.instance()
 	get_parent().add_child(room_instence)
-	room_instence.position.x = left_node.position.x - 526
+	room_instence.global_position.x = left_node.global_position.x - 526
 	room_instence.position.y = position.y
 	left_spawned = true
 	print (room_id + " left room generation")
@@ -94,8 +94,8 @@ func spawn_room_left():
 func spawn_room_right():
 	var room_instence = right_room.instance()
 	get_parent().add_child(room_instence)
-	room_instence.position.x = right_node.position.x - 9
-	room_instence.position.y = position.y
+	room_instence.global_position.x = right_node.global_position.x - 9
+	room_instence.global_position.y = global_position.y
 	right_spawned = true
 	
 func spawn_room_top():
@@ -109,8 +109,8 @@ func spawn_room_top():
 func spawn_room_bottom():
 	var room_instence = bottom_room.instance()
 	get_parent().add_child(room_instence)
-	room_instence.position.y = bottom_node.position.y + 8
-	room_instence.position.x = position.x
+	room_instence.global_position.y = bottom_node.global_position.y + 8
+	room_instence.global_position.x = global_position.x
 	bottom_spawned = true
 
 

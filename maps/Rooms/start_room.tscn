@@ -432,6 +432,9 @@ tile_data = PoolIntArray( 14, 7, 0, 15, 4, 0, 16, 3, 0, 17, 4, 0, 18, 9, 0, 6553
 script = ExtResource( 3 )
 room_id = "start_room"
 left_opening = true
+right_opening = true
+top_opening = true
+bottom_opening = true
 spawn_active = true
 
 [node name="room_connectors" type="Node2D" parent="."]
