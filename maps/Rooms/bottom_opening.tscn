@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/Enemys/slime_enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/spites/halee_texture.png" type="Texture" id=2]
 [ext_resource path="res://maps/Rooms/start_room.gd" type="Script" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -426,19 +427,23 @@ tile_data = PoolIntArray( 65537, 8, 0, 65538, 1, 0, 65539, 2, 0, 65540, 1, 0, 65
 script = ExtResource( 3 )
 bottom_opening = true
 
-[node name="room_connectors" type="Node" parent="."]
+[node name="room_connectors" type="Node2D" parent="."]
 
-[node name="down" type="Node2D" parent="room_connectors"]
-position = Vector2( 265, 296 )
+[node name="top" type="Node2D" parent="room_connectors"]
+position = Vector2( 265, 9 )
 
-[node name="right" type="Node2D" parent="room_connectors"]
-position = Vector2( 521, 151 )
+[node name="Sprite" type="Sprite" parent="room_connectors/top"]
+visible = false
+texture = ExtResource( 4 )
 
 [node name="left" type="Node2D" parent="room_connectors"]
 position = Vector2( 14, 151 )
 
-[node name="top" type="Node2D" parent="room_connectors"]
-position = Vector2( 265, 9 )
+[node name="right" type="Node2D" parent="room_connectors"]
+position = Vector2( 521, 151 )
+
+[node name="bottom" type="Node2D" parent="room_connectors"]
+position = Vector2( 265, 296 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
 position = Vector2( 70, 57 )
