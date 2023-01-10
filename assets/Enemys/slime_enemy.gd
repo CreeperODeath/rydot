@@ -19,7 +19,6 @@ func _process(delta):
 	if health <= 0:
 		if death_sound.playing == false:
 			death_sound.play()
-	#print(health)
 
 
 func _physics_process(delta):
@@ -68,9 +67,7 @@ func movement():
 
 		
 func _on_hit_body_entered(body):
-	#print("hit")
 	if body.is_in_group("damage_enemy"):
-		#print("damage")
 		health -= 1
 		
 
