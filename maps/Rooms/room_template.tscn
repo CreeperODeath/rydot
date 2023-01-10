@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/spites/halee_texture.png" type="Texture" id=1]
 [ext_resource path="res://assets/Enemys/slime_enemy.tscn" type="PackedScene" id=2]
@@ -415,6 +415,12 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 21/shapes = [  ]
 21/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 227.5, 119.5 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 167, 87.5 )
+
 [node name="room_template" type="TileMap" groups=["map"]]
 z_index = -10
 z_as_relative = false
@@ -449,3 +455,45 @@ position = Vector2( 265, 296 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
 position = Vector2( 70, 57 )
+
+[node name="room detector" type="Node2D" parent="."]
+
+[node name="room_indicator" type="Area2D" parent="room detector" groups=["room"]]
+position = Vector2( 265, 413 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="room detector/room_indicator" groups=["room"]]
+position = Vector2( 2, -256 )
+shape = SubResource( 13 )
+
+[node name="left_room_detector" type="Area2D" parent="room detector" groups=["room_detector"]]
+position = Vector2( 496, -3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="room detector/left_room_detector" groups=["room"]]
+position = Vector2( -678, 149 )
+shape = SubResource( 12 )
+
+[node name="right_room_detector" type="Area2D" parent="room detector" groups=["room_detector"]]
+position = Vector2( -494, 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="room detector/right_room_detector" groups=["room"]]
+position = Vector2( 1206, 139 )
+shape = SubResource( 12 )
+
+[node name="top_room_detector" type="Area2D" parent="room detector" groups=["room_detector"]]
+position = Vector2( -2, -300 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="room detector/top_room_detector" groups=["room"]]
+position = Vector2( 252, 197 )
+shape = SubResource( 12 )
+
+[node name="bottom_room_detector" type="Area2D" parent="room detector"]
+position = Vector2( 11, 306 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="room detector/bottom_room_detector" groups=["room"]]
+position = Vector2( 254, 107 )
+shape = SubResource( 12 )
+
+[connection signal="area_entered" from="room detector/left_room_detector" to="." method="_on_left_room_detector_area_entered"]
+[connection signal="area_entered" from="room detector/right_room_detector" to="." method="_on_right_room_detector_area_entered"]
+[connection signal="area_entered" from="room detector/top_room_detector" to="." method="_on_top_room_detector_area_entered"]
+[connection signal="area_entered" from="room detector/bottom_room_detector" to="." method="_on_bottom_room_detector_area_entered"]

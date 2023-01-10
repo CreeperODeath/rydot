@@ -2,6 +2,10 @@ extends TileMap
 
 onready var room_var = room_variables.new()
 
+export var debug = true
+
+
+
 
 
 
@@ -38,25 +42,38 @@ export var bottom_opening = false
 var all_rooms_spawned = false
 export var spawn_active = false
 
+
+#---------Room colision variables----------\
+var left_room_detected 
+var right_room_detected 
+var top_room_detected 
+var bottom_room_detected 
+
+
 func _physics_process(delta):
+	
 	if all_rooms_spawned != true and spawn_active == true:
 		room_spawn_check()
+	else:
+		if debug:
+			print(str(room_id) + " has finished generating")
+			debug = false		
 	
 			
 func room_spawn_check():
-	if left_opening == true:
+	if left_opening == true and left_room_detected == false:
 		if left_spawned == false:
 			if is_instance_valid(left_room):
 				spawn_room_left()
 	if right_opening == true:
-		if right_spawned == false:
+		if right_spawned == false and right_room_detected == false:
 			if is_instance_valid(right_room):
 				spawn_room_right()
-	if top_opening == true:
+	if top_opening == true and top_room_detected == false:
 		if top_spawned == false:
 			if is_instance_valid(top_room):
 				spawn_room_top()
-	if bottom_opening == true:
+	if bottom_opening == true and bottom_room_detected == false:
 		if bottom_spawned == false:
 			if is_instance_valid(bottom_room):
 				spawn_room_bottom()
@@ -92,3 +109,45 @@ func spawn_room_bottom():
 	room_instence.position.x = position.x
 	bottom_spawned = true
 
+
+
+
+
+#----------Room collision detection----------
+func _on_top_room_detector_area_entered(area):
+	if area.is_in_group("room"):
+		top_room_detected = true
+		top_opening = false
+		if debug:
+			print ("detected room top")
+	else:
+		top_room_detected = false
+
+
+func _on_right_room_detector_area_entered(area):
+	if area.is_in_group("room"):
+		right_room_detected = true
+		right_opening = false
+		if debug:
+			print ("detected room right")
+	else:
+		right_room_detected = false
+
+func _on_left_room_detector_area_entered(area):
+	if area.is_in_group("room"):
+		left_room_detected = true
+		left_opening = false
+		if debug:
+			print ("detected room left")
+	else:
+		left_room_detected = false
+
+
+func _on_bottom_room_detector_area_entered(area):
+	if area.is_in_group("room"):
+		bottom_room_detected = true
+		bottom_opening = false
+		if debug:
+			print ("detected room bottom")
+	else:
+		bottom_room_detected = false
