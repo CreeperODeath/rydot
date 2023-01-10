@@ -19,7 +19,6 @@ func _process(delta):
 	if health <= 0:
 		if death_sound.playing == false:
 			death_sound.play()
-	#print(health)
 
 
 func _physics_process(delta):
