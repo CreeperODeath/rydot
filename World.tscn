@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://maps/Rooms/start_room.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Enemys/Steam Trap.tscn" type="PackedScene" id=4]
 [ext_resource path="res://LaserDrone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://BoomBot.tscn" type="PackedScene" id=6]
 
 [node name="World" type="Node2D"]
 position = Vector2( 0, -2 )
@@ -23,5 +24,8 @@ position = Vector2( 240, 135 )
 
 [node name="LaserDrone" parent="." instance=ExtResource( 5 )]
 position = Vector2( 165.757, 110.908 )
+
+[node name="BoomBot" parent="." instance=ExtResource( 6 )]
+position = Vector2( 168.469, 169.207 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
