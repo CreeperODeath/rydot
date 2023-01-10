@@ -1,13 +1,15 @@
 extends KinematicBody2D
 
-export var move_speed = 300.0
+export var move_speed = 0.0
+export var max_speed = 300.0
 onready var BulletInstance = preload("res://Bullet.tscn")
 onready var player_sprite = $AnimatedSprite
 onready var WeaponTimer1 = $WeaponTimer1
 var velocity = Vector2()
-
 var facing_left = true
 var firing = false
+var x_dir = 0
+var y_dir = 0
 
 func _ready():
 	pass
@@ -46,29 +48,51 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	#----------------Movey Code-----------------
-	var x_dir = 0
-	var y_dir = 0
+	if x_dir != 0:
+		if x_dir > 0:
+			x_dir -= 0.05
+		if x_dir < 0:
+			x_dir += 0.05
+		if x_dir < 0.05 and x_dir > -0.05:
+			x_dir = 0
 	if Input.is_action_pressed("move_left"):
-		x_dir -= 1
+		x_dir = -1
 		facing_left = true
-	if Input.is_action_pressed("move_right"):
-		x_dir += 1
+	elif Input.is_action_pressed("move_right"):
+		x_dir = 1
 		facing_left = false
+	if y_dir != 0:
+		if y_dir > 0:
+			y_dir -= 0.05
+		if y_dir < 0:
+			y_dir += 0.05
+		if y_dir < 0.05 and y_dir > -0.05:
+			y_dir = 0
 	if Input.is_action_pressed("move_up"):
-		y_dir -= 1
-	if Input.is_action_pressed("move_down"):
-		y_dir += 1
+		y_dir = -1
+	elif Input.is_action_pressed("move_down"):
+		y_dir = 1
 	if facing_left == true:
 		player_sprite.set_flip_h(false)
 	else:
 		player_sprite.set_flip_h(true)
 	
-		
-	velocity.x = x_dir * move_speed
-	velocity.y = y_dir * move_speed
-	if velocity == Vector2(0,0):
-		player_sprite.set_animation("idle") 
+	if x_dir == 0 and y_dir == 0:
+		player_sprite.set_animation("idle")
+		if move_speed > 0:
+			move_speed -= 100
+		if move_speed < 0:
+			move_speed = 0
 	else:
 		player_sprite.set_animation("run") 
 		player_sprite.set_animation("run") 
+		if move_speed < 300:
+			if x_dir != 0 or y_dir != 0:
+				move_speed += 20
+		if move_speed > max_speed:
+			move_speed = max_speed
+	
+	velocity.x =  x_dir * move_speed
+	velocity.y =  y_dir * move_speed
 	velocity = move_and_slide(velocity, velocity)
+	print(x_dir)
