@@ -4,46 +4,59 @@
 [ext_resource path="res://assets/spites/the boi.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 7.0
+radius = 4.75
 height = 6.0
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 13, 19 )
 
 [sub_resource type="AtlasTexture" id=3]
+<<<<<<< Updated upstream
+=======
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 13, 19 )
+
+[sub_resource type="AtlasTexture" id=4]
+>>>>>>> Stashed changes
 atlas = ExtResource( 2 )
 region = Rect2( 13, 0, 13, 19 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
 region = Rect2( 26, 0, 13, 19 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
 region = Rect2( 39, 0, 13, 19 )
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 7 ) ],
+"frames": [ SubResource( 2 ) ],
 "loop": true,
 "name": "idle",
 "speed": 1.0
 }, {
+<<<<<<< Updated upstream
 "frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+=======
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+>>>>>>> Stashed changes
 "loop": true,
 "name": "run",
 "speed": 10.0
 } ]
 
-[node name="Player" type="KinematicBody2D" groups=["player"]]
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 6 )
+frames = SubResource( 7 )
 animation = "idle"
 playing = true
 
