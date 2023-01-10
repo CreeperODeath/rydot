@@ -434,7 +434,7 @@ position = Vector2( 70, 57 )
 
 [node name="room_connectors" type="Node" parent="."]
 
-[node name="down" type="Node2D" parent="room_connectors"]
+[node name="bottom" type="Node2D" parent="room_connectors"]
 position = Vector2( 265, 296 )
 
 [node name="right" type="Node2D" parent="room_connectors"]

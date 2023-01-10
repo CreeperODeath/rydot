@@ -37,9 +37,9 @@ export var top_opening = false
 export var bottom_opening = false
 
 func _physics_process(delta):
-	if top_spawned == false:
-		if is_instance_valid(top_room):
-			spawn_room_top()
+	if bottom_spawned == false:
+		if is_instance_valid(bottom_room):
+			spawn_room_bottom()
 	
 			
 func room_spawn_check():
