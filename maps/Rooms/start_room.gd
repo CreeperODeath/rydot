@@ -11,13 +11,13 @@ export var debug = true
 
 
 #----------left room var----------
-onready var left_room = load(room_var.top_rooms[0])
+onready var left_room = load(room_var.get_room("left", room_id))
 onready var left_node = $room_connectors/left
 var left_spawned = false
 
 
 #---------right room var-----------
-onready var right_room = load(room_var.top_rooms[0])
+onready var right_room = load(room_var.get_room("right", room_id))
 onready var right_node = $room_connectors/right
 var right_spawned = false
 
@@ -27,7 +27,7 @@ onready var top_node = $room_connectors/top
 var top_spawned = false
 
 #---------bottom room var-----------
-onready var bottom_room = load(room_var.top_rooms[0])
+onready var bottom_room = load(room_var.get_room("bottom", room_id))
 onready var bottom_node = $room_connectors/bottom
 var bottom_spawned = false
 
@@ -44,14 +44,13 @@ export var spawn_active = false
 
 
 #---------Room colision variables----------\
-var left_room_detected 
-var right_room_detected 
-var top_room_detected 
-var bottom_room_detected 
+onready var left_room_detected = false
+onready var right_room_detected = false
+onready var top_room_detected = false
+onready var bottom_room_detected = false
 
 
 func _physics_process(delta):
-	
 	if all_rooms_spawned != true and spawn_active == true:
 		room_spawn_check()
 	else:
@@ -65,9 +64,11 @@ func room_spawn_check():
 		if left_spawned == false:
 			if is_instance_valid(left_room):
 				spawn_room_left()
-	if right_opening == true:
-		if right_spawned == false and right_room_detected == false:
+	if right_opening == true and right_room_detected == false:
+		
+			print("trying to spawn right room")
 			if is_instance_valid(right_room):
+		
 				spawn_room_right()
 	if top_opening == true and top_room_detected == false:
 		if top_spawned == false:
@@ -86,6 +87,10 @@ func spawn_room_left():
 	room_instence.position.x = left_node.position.x - 526
 	room_instence.position.y = position.y
 	left_spawned = true
+	if room_id == "start_room":
+		print ("start left room generation")
+	
+	
 	
 func spawn_room_right():
 	var room_instence = right_room.instance()
