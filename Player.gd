@@ -6,9 +6,10 @@ onready var BulletInstance = preload("res://Bullet.tscn")
 onready var player_sprite = $AnimatedSprite
 onready var WeaponTimer1 = $WeaponTimer1
 var velocity = Vector2()
-
 var facing_left = true
 var firing = false
+var x_dir = 0
+var y_dir = 0
 
 func _ready():
 	pass
@@ -47,18 +48,30 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	#----------------Movey Code-----------------
-	var x_dir = 0
-	var y_dir = 0
+	if x_dir != 0:
+		if x_dir > 0:
+			x_dir -= 0.05
+		if x_dir < 0:
+			x_dir += 0.05
+		if x_dir < 0.05 and x_dir > -0.05:
+			x_dir = 0
 	if Input.is_action_pressed("move_left"):
-		x_dir -= 1
+		x_dir = -1
 		facing_left = true
-	if Input.is_action_pressed("move_right"):
-		x_dir += 1
+	elif Input.is_action_pressed("move_right"):
+		x_dir = 1
 		facing_left = false
+	if y_dir != 0:
+		if y_dir > 0:
+			y_dir -= 0.05
+		if y_dir < 0:
+			y_dir += 0.05
+		if y_dir < 0.05 and y_dir > -0.05:
+			y_dir = 0
 	if Input.is_action_pressed("move_up"):
-		y_dir -= 1
-	if Input.is_action_pressed("move_down"):
-		y_dir += 1
+		y_dir = -1
+	elif Input.is_action_pressed("move_down"):
+		y_dir = 1
 	if facing_left == true:
 		player_sprite.set_flip_h(false)
 	else:
@@ -82,3 +95,4 @@ func _physics_process(_delta):
 	velocity.x =  x_dir * move_speed
 	velocity.y =  y_dir * move_speed
 	velocity = move_and_slide(velocity, velocity)
+	print(x_dir)
