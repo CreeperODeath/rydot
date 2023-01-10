@@ -498,3 +498,4 @@ shape = SubResource( 13 )
 [connection signal="area_entered" from="room detector/right_room_detector" to="." method="_on_right_room_detector_area_entered"]
 [connection signal="area_entered" from="room detector/top_room_detector" to="." method="_on_top_room_detector_area_entered"]
 [connection signal="area_entered" from="room detector/bottom_room_detector" to="." method="_on_bottom_room_detector_area_entered"]
+[connection signal="area_entered" from="room_indicator" to="." method="_on_room_indicator_area_entered"]

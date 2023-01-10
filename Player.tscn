@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/spites/the boi.png" type="Texture" id=2]
@@ -40,9 +40,11 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[node name="Player" type="KinematicBody2D" groups=[
-"player",
-]]
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 3.0
+height = 0.0
+
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -61,3 +63,8 @@ smoothing_speed = 10.0
 [node name="WeaponTimer1" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 8 )

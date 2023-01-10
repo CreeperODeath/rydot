@@ -2,7 +2,7 @@ extends TileMap
 
 onready var room_var = room_variables.new()
 
-var debug = false
+var debug = true
 
 
 
@@ -41,6 +41,7 @@ export var top_opening = false
 export var bottom_opening = false
 var all_rooms_spawned = false
 export var spawn_active = false
+var local_spawn_active = false
 
 
 #---------Room colision variables----------\
@@ -51,14 +52,16 @@ onready var bottom_room_detected = false
 
 
 func _physics_process(delta):
-	if all_rooms_spawned != true and spawn_active == true:
-		
-		room_spawn_check()
-	else:
-		
-		if debug and spawn_active == true:
-			print(str(room_id) + " has finished generating")
-			debug = false		
+	if local_spawn_active == true:
+		if all_rooms_spawned != true and spawn_active == true:
+			
+			room_spawn_check()
+		else:
+			
+			if debug and spawn_active == true:
+				print(str(room_id) + " has finished generating")
+				debug = false		
+			set_process(false)
 		
 			
 func room_spawn_check():
@@ -85,7 +88,7 @@ func spawn_room_left():
 	var room_instence = left_room.instance()
 	get_parent().add_child(room_instence)
 	room_instence.global_position.x = left_node.global_position.x - 526
-	room_instence.position.y = position.y
+	room_instence.global_position.y = global_position.y
 	left_spawned = true
 	
 	
@@ -124,8 +127,8 @@ func _on_top_room_detector_area_entered(area):
 		top_opening = false
 		if debug:
 			print ("detected room top")
-	else:
-		top_room_detected = false
+	elif area.is_in_group("player"):
+		local_spawn_active = true
 
 
 func _on_right_room_detector_area_entered(area):
@@ -134,8 +137,9 @@ func _on_right_room_detector_area_entered(area):
 		right_opening = false
 		if debug:
 			print ("detected room right")
-	else:
-		right_room_detected = false
+	elif area.is_in_group("player"):
+		local_spawn_active = true
+
 
 func _on_left_room_detector_area_entered(area):
 	if area.is_in_group("room"):
@@ -143,8 +147,8 @@ func _on_left_room_detector_area_entered(area):
 		left_opening = false
 		if debug:
 			print ("detected room left")
-	else:
-		left_room_detected = false
+	elif area.is_in_group("player"):
+		local_spawn_active = true
 
 
 func _on_bottom_room_detector_area_entered(area):
@@ -153,5 +157,10 @@ func _on_bottom_room_detector_area_entered(area):
 		bottom_opening = false
 		if debug:
 			print ("detected room bottom")
-	else:
-		bottom_room_detected = false
+	elif area.is_in_group("player"):
+		local_spawn_active = true
+			
+			
+func _on_room_indicator_area_entered(area):
+	if area.is_in_group("player"):
+		local_spawn_active = true
