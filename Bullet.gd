@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var direction = Vector2()
-var speed = 300.0
+var speed = 320.0
 var velocity = Vector2()
 var pierce = 0
 onready var HitTimer = $HitTimer

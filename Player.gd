@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-export var move_speed = 300.0
+export var move_speed = 0.0
+export var max_speed = 300.0
 onready var BulletInstance = preload("res://Bullet.tscn")
 onready var player_sprite = $AnimatedSprite
 onready var WeaponTimer1 = $WeaponTimer1
@@ -63,12 +64,21 @@ func _physics_process(_delta):
 	else:
 		player_sprite.set_flip_h(true)
 	
-		
-	velocity.x = x_dir * move_speed
-	velocity.y = y_dir * move_speed
-	if velocity == Vector2(0,0):
-		player_sprite.set_animation("idle") 
+	if x_dir == 0 and y_dir == 0:
+		player_sprite.set_animation("idle")
+		if move_speed > 0:
+			move_speed -= 100
+		if move_speed < 0:
+			move_speed = 0
 	else:
 		player_sprite.set_animation("run") 
 		player_sprite.set_animation("run") 
+		if move_speed < 300:
+			if x_dir != 0 or y_dir != 0:
+				move_speed += 20
+		if move_speed > max_speed:
+			move_speed = max_speed
+	
+	velocity.x =  x_dir * move_speed
+	velocity.y =  y_dir * move_speed
 	velocity = move_and_slide(velocity, velocity)

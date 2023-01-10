@@ -10,7 +10,6 @@ var time = 600
 
 func _on_Timer_timeout():
 	time -= 1
-	print(time)
 
 
 func _ready():
