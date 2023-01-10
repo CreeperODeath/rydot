@@ -52,12 +52,14 @@ onready var bottom_room_detected = false
 
 func _physics_process(delta):
 	if all_rooms_spawned != true and spawn_active == true:
+		
 		room_spawn_check()
 	else:
-		if debug:
+		
+		if debug and spawn_active == true:
 			print(str(room_id) + " has finished generating")
 			debug = false		
-	
+		
 			
 func room_spawn_check():
 	if left_opening == true and left_room_detected == false:
@@ -65,10 +67,8 @@ func room_spawn_check():
 			if is_instance_valid(left_room):
 				spawn_room_left()
 	if right_opening == true and right_room_detected == false:
-		
-			print("trying to spawn right room")
+		if right_spawned == false:
 			if is_instance_valid(right_room):
-		
 				spawn_room_right()
 	if top_opening == true and top_room_detected == false:
 		if top_spawned == false:
@@ -87,8 +87,7 @@ func spawn_room_left():
 	room_instence.position.x = left_node.position.x - 526
 	room_instence.position.y = position.y
 	left_spawned = true
-	if room_id == "start_room":
-		print ("start left room generation")
+	print (room_id + " left room generation")
 	
 	
 	
