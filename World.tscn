@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://maps/Rooms/room_placeholder.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Enemys/Steam Trap.tscn" type="PackedScene" id=4]
 [ext_resource path="res://LaserDrone.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Halogen Jelly.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Drone Laser.tscn" type="PackedScene" id=7]
 
 [node name="World" type="Node2D"]
 position = Vector2( 0, -2 )
@@ -29,5 +31,11 @@ right_opening = true
 top_opening = true
 bottom_opening = true
 local_spawn_active = true
+
+[node name="Node2D" parent="." instance=ExtResource( 6 )]
+position = Vector2( 180.859, 159.8 )
+
+[node name="Drone Laser" parent="." instance=ExtResource( 7 )]
+position = Vector2( 185.102, 109.596 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
