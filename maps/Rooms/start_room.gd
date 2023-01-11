@@ -13,29 +13,33 @@ onready var room_placeholder = load("res://maps/Rooms/room_placeholder.tscn")
 
 #----------left room var----------
 onready var left_room = load(room_var.get_room("left", room_id))
+onready var left_room_id = room_var.get_random_room_id("left")
 onready var left_node = $room_connectors/left
 var left_spawned = false
 
 
 #---------right room var-----------
 onready var right_room = load(room_var.get_room("right", room_id))
+onready var right_room_id = room_var.get_random_room_id("right")
 onready var right_node = $room_connectors/right
 var right_spawned = false
 
 #---------top room var-----------
 onready var top_room = load(room_var.get_room("top", room_id))
+onready var top_room_id = room_var.get_random_room_id("top")
 onready var top_node = $room_connectors/top
 var top_spawned = false
 
 #---------bottom room var-----------
 onready var bottom_room = load(room_var.get_room("bottom", room_id))
+onready var bottom_room_id = room_var.get_random_room_id("bottom")
 onready var bottom_node = $room_connectors/bottom
 var bottom_spawned = false
 
 
 
 #-------individual room stats--------
-export var room_id = ""
+export var room_id = "n/a"
 export var left_opening = false
 export var right_opening = false
 export var top_opening = false
@@ -55,6 +59,8 @@ export var spawned_self = false
 
 
 func _physics_process(delta):
+	if room_id != "n/a":
+		pass
 	if local_spawn_active == true:
 		if all_rooms_spawned != true and spawn_active == true:
 			

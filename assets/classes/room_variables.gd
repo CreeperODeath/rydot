@@ -24,11 +24,25 @@ var room_dic = {
 	"top_left" : "res://maps/Rooms/top_left.tscn",
 	"right_bottom" : "res://maps/Rooms/right_bottom.tscn"}
 
+var room_sides_dic = {
+	"basic_room": {"left": true, "right" : true, "top" : true, "bottom": true},
+	"left_opening" : {"left": true, "right" : false, "top" : false, "bottom": false},
+	"right_opening" : {"left": false, "right" : true, "top" : false, "bottom": false},
+	"top_opening" : {"left": false, "right" : false, "top" : true, "bottom": false},
+	"bottom_opening" : {"left": false, "right" : false, "top" : false, "bottom": true},
+	"t_room" : {"left": true, "right" : true, "top" : false, "bottom": true},
+	"top_left" : {"left": true, "right" : false, "top" : true, "bottom": false},
+	"right_bottom" : {"left": false, "right" : true, "top" : false, "bottom": true}
+}
 
-var top_rooms_raw = [room_dic["basic_room"], room_dic["bottom_opening"], room_dic["t_room"], room_dic["right_bottom"]]
-var left_rooms_raw = [room_dic["basic_room"], room_dic["right_opening"], room_dic["t_room"], room_dic["right_bottom"]]
-var right_rooms_raw = [room_dic["basic_room"], room_dic["left_opening"], room_dic["t_room"], room_dic["top_left"]]
-var bottom_rooms_raw = [room_dic["basic_room"], room_dic["top_opening"], room_dic["top_left"]]
+
+
+
+
+var top_rooms_raw = ["basic_room", "bottom_opening", "t_room", "right_bottom"]
+var left_rooms_raw = ["basic_room", "right_opening", "t_room", "right_bottom"]
+var right_rooms_raw = ["basic_room", "left_opening", "t_room", "top_left"]
+var bottom_rooms_raw = ["basic_room", "top_opening", "top_left"]
 
 #------These are the active rooms in the selection---------
 var top_rooms = top_rooms_raw
@@ -38,10 +52,10 @@ var bottom_rooms = bottom_rooms_raw
 
 
 #-----room count too high------
-var top_too_many = [bottom_opening]
-var left_too_many = [right_opening]
-var right_too_many = [left_opening]
-var bottom_too_many = [top_opening]
+var top_too_many = ["bottom_opening"]
+var left_too_many = ["right_opening"]
+var right_too_many = ["left_opening"]
+var bottom_too_many = ["top_opening"]
 
 
 func make_less_rooms():
@@ -49,6 +63,13 @@ func make_less_rooms():
 	left_rooms = left_too_many
 	right_rooms = right_too_many
 	bottom_rooms = bottom_too_many
+
+func less_rooms_check():
+	if room_count >= 10:
+		top_rooms = top_too_many
+		left_rooms = left_too_many
+		right_rooms = right_too_many
+		bottom_rooms = bottom_too_many
 
 
 
@@ -83,7 +104,21 @@ func get_room(room, exclude):
 				room_count += 1
 				return room_selected
 				
-				
+
 func get_random_room_id(side):
-	pass
+	less_rooms_check()
+	rng.randomize()
+	var room_selected
+	if side == "left":
+		room_selected = left_rooms[rng.randi_range(0, left_rooms.size() - 1)]
+	elif side == "right":
+		room_selected = right_rooms[rng.randi_range(0, right_rooms.size() - 1)]
+	elif side == "top":
+		room_selected = top_rooms[rng.randi_range(0, top_rooms.size() - 1)]
+	elif side == "bottom":
+		 room_selected = bottom_rooms[rng.randi_range(0, bottom_rooms.size() - 1)]
+	else:
+		print("invalid room side")
+	room_count += 1
+	return room_selected		
 		
