@@ -2,8 +2,7 @@ extends Node2D
 
 onready var room_var = room_variables.new()
 
-var debug = true
-
+var debug = false
 
 
 
@@ -66,7 +65,6 @@ func _physics_process(delta):
 		top_opening = room_var.room_sides_dic[room_id]["top"]
 		bottom_opening = room_var.room_sides_dic[room_id]["bottom"]
 		room_self = load(room_var.room_dic[room_id])
-		print(room_id)
 		
 		if spawned_self == false and local_spawn_active == true:
 			if is_instance_valid(room_self):
@@ -141,7 +139,7 @@ func spawn_self():
 	room_instence.global_position.y = global_position.y 
 	room_instence.global_position.x = global_position.x
 	spawned_self = true
-	print("spawned_self")
+
 
 
 
