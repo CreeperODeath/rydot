@@ -7,7 +7,8 @@ var debug = true
 
 
 
-
+#-----------room placeholder-----------
+onready var room_placeholder = load("res://maps/Rooms/room_placeholder.tscn")
 
 
 #----------left room var----------

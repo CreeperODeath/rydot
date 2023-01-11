@@ -14,11 +14,21 @@ var t_room = "res://maps/Rooms/t_room.tscn"
 var top_left = "res://maps/Rooms/top_left.tscn"
 var right_bottom = "res://maps/Rooms/right_bottom.tscn"
 
+var room_dic = {
+	"basic_room" : "res://maps/Rooms/room_template.tscn",
+	"left_opening" : "res://maps/Rooms/left_opening.tscn",
+	"right_opening" : "res://maps/Rooms/right_opening.tscn",
+	"top_opening" : "res://maps/Rooms/top_opening.tscn",
+	"bottom_opening" : "res://maps/Rooms/bottom_opening.tscn",
+	"t_room" : "res://maps/Rooms/t_room.tscn",
+	"top_left" : "res://maps/Rooms/top_left.tscn",
+	"right_bottom" : "res://maps/Rooms/right_bottom.tscn"}
 
-var top_rooms_raw = [basic_room, bottom_opening, t_room, right_bottom]
-var left_rooms_raw = [basic_room, right_opening, t_room, right_bottom]
-var right_rooms_raw = [basic_room, left_opening, t_room, top_left]
-var bottom_rooms_raw = [basic_room, top_opening, top_left]
+
+var top_rooms_raw = [room_dic["basic_room"], room_dic["bottom_opening"], room_dic["t_room"], room_dic["right_bottom"]]
+var left_rooms_raw = [room_dic["basic_room"], room_dic["right_opening"], room_dic["t_room"], room_dic["right_bottom"]]
+var right_rooms_raw = [room_dic["basic_room"], room_dic["left_opening"], room_dic["t_room"], room_dic["top_left"]]
+var bottom_rooms_raw = [room_dic["basic_room"], room_dic["top_opening"], room_dic["top_left"]]
 
 #------These are the active rooms in the selection---------
 var top_rooms = top_rooms_raw
@@ -73,4 +83,7 @@ func get_room(room, exclude):
 				room_count += 1
 				return room_selected
 				
+				
+func get_random_room_id(side):
+	pass
 		
