@@ -49,6 +49,8 @@ onready var left_room_detected = false
 onready var right_room_detected = false
 onready var top_room_detected = false
 onready var bottom_room_detected = false
+export var spawned_self = false
+
 
 
 func _physics_process(delta):
