@@ -7,6 +7,7 @@ onready var death_sound = $death_sound
 
 export var health = 4
 export var vision = []
+var can_move = true
 
 var follow = false
 export var movment_up_down = true
@@ -23,8 +24,8 @@ func _process(delta):
 
 func _physics_process(delta):
 	
-
-	movement()
+	if can_move:
+		movement()
 	
 		
 
@@ -45,7 +46,11 @@ func movement():
 			velocity.y = speed
 		else:
 			velocity.x = 0
-			
+		
+		if velocity > Vector2(0,0):
+			slime_sprite.set_animation("run")
+		else:
+			slime_sprite.set_animation("idle")
 		move_and_slide(velocity)
 		
 		if collision:
@@ -64,16 +69,10 @@ func movement():
 		
 		
 		
-
-		
 func _on_hit_body_entered(body):
 	if body.is_in_group("damage_enemy"):
 		health -= 1
 		
-
-		
-	
-	
 
 func _on_vision_body_entered(body):
 	if body.is_in_group("player"):

@@ -28,10 +28,7 @@ height = 0.0
 [sub_resource type="CircleShape2D" id=4]
 radius = 208.195
 
-[node name="KinematicBody2D" type="KinematicBody2D" groups=[
-"1d4_damage",
-"enemy",
-]]
+[node name="KinematicBody2D" type="KinematicBody2D" groups=["1d4_damage", "enemy"]]
 z_as_relative = false
 collision_layer = 4
 collision_mask = 7

@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+export var health = 20
 export var move_speed = 0.0
 export var max_speed = 200.0
 onready var BulletInstance = preload("res://Bullet.tscn")
