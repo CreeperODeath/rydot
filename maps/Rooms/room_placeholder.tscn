@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://maps/Rooms/start_room.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 227.5, 119.5 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 177.5, 108.5 )
+
+[node name="room detector" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="room_indicator" type="Area2D" parent="." groups=["room"]]
+position = Vector2( 265, 413 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="room_indicator" groups=["room"]]
+position = Vector2( 2, -256 )
+shape = SubResource( 13 )
+
+[node name="left_room_detector" type="Area2D" parent="." groups=["room_detector"]]
+position = Vector2( 496, -3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_room_detector" groups=["room"]]
+position = Vector2( -678, 149 )
+shape = SubResource( 12 )
+
+[node name="right_room_detector" type="Area2D" parent="." groups=["room_detector"]]
+position = Vector2( -494, 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_room_detector" groups=["room"]]
+position = Vector2( 1198.5, 155.5 )
+shape = SubResource( 12 )
+
+[node name="top_room_detector" type="Area2D" parent="." groups=["room_detector"]]
+position = Vector2( -2, -300 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top_room_detector" groups=["room"]]
+position = Vector2( 252, 197 )
+shape = SubResource( 12 )
+
+[node name="bottom_room_detector" type="Area2D" parent="."]
+position = Vector2( 11, 306 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_room_detector" groups=["room"]]
+position = Vector2( 254, 107 )
+shape = SubResource( 12 )
+
+[node name="room_connectors" type="Node2D" parent="."]
+
+[node name="top" type="Node2D" parent="room_connectors"]
+position = Vector2( 265, 9 )
+
+[node name="left" type="Node2D" parent="room_connectors"]
+position = Vector2( 14, 151 )
+
+[node name="right" type="Node2D" parent="room_connectors"]
+position = Vector2( 521, 151 )
+
+[node name="bottom" type="Node2D" parent="room_connectors"]
+position = Vector2( 265, 296 )
+
+[connection signal="area_entered" from="room_indicator" to="." method="_on_room_indicator_area_entered"]
+[connection signal="area_entered" from="left_room_detector" to="." method="_on_left_room_detector_area_entered"]
+[connection signal="area_entered" from="right_room_detector" to="." method="_on_right_room_detector_area_entered"]
+[connection signal="area_entered" from="top_room_detector" to="." method="_on_top_room_detector_area_entered"]
+[connection signal="area_entered" from="bottom_room_detector" to="." method="_on_bottom_room_detector_area_entered"]
