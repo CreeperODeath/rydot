@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/spites/the boi.png" type="Texture" id=2]
+[ext_resource path="res://assets/PixeloidSans-nR3g1.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://time_display.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.75
@@ -40,6 +42,13 @@ animations = [ {
 "speed": 10.0
 } ]
 
+[sub_resource type="DynamicFont" id=9]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=10]
+default_font = SubResource( 9 )
+
 [sub_resource type="CapsuleShape2D" id=8]
 radius = 3.0
 height = 0.0
@@ -55,14 +64,25 @@ frames = SubResource( 7 )
 animation = "idle"
 playing = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-zoom = Vector2( 0.3, 0.3 )
-smoothing_speed = 10.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="time_display" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 34.0
+margin_top = 28.0
+margin_right = 234.0
+margin_bottom = 128.0
+theme = SubResource( 10 )
+text = "TIME: "
+script = ExtResource( 4 )
 
 [node name="WeaponTimer1" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.3, 0.3 )
+smoothing_speed = 10.0
 
 [node name="Area2D" type="Area2D" parent="." groups=["player"]]
 
