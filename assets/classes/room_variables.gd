@@ -3,6 +3,7 @@ extends Node
 var rng = RandomNumberGenerator.new()
 
 var room_count = 0
+var room_slowdown = 3
 
 class_name room_variables
 var basic_room = "res://maps/Rooms/room_template.tscn"
@@ -22,7 +23,8 @@ var room_dic = {
 	"bottom_opening" : "res://maps/Rooms/bottom_opening.tscn",
 	"t_room" : "res://maps/Rooms/t_room.tscn",
 	"top_left" : "res://maps/Rooms/top_left.tscn",
-	"right_bottom" : "res://maps/Rooms/right_bottom.tscn"}
+	"right_bottom" : "res://maps/Rooms/right_bottom.tscn",
+	"start_room" : "res://maps/Rooms/start_room.tscn"}
 
 var room_sides_dic = {
 	"basic_room": {"left": true, "right" : true, "top" : true, "bottom": true},
@@ -32,7 +34,8 @@ var room_sides_dic = {
 	"bottom_opening" : {"left": false, "right" : false, "top" : false, "bottom": true},
 	"t_room" : {"left": true, "right" : true, "top" : false, "bottom": true},
 	"top_left" : {"left": true, "right" : false, "top" : true, "bottom": false},
-	"right_bottom" : {"left": false, "right" : true, "top" : false, "bottom": true}
+	"right_bottom" : {"left": false, "right" : true, "top" : false, "bottom": true},
+	"start_room" : {"left": true, "right" : true, "top" : true, "bottom": true}
 }
 
 
@@ -65,7 +68,7 @@ func make_less_rooms():
 	bottom_rooms = bottom_too_many
 
 func less_rooms_check():
-	if room_count >= 10:
+	if room_count >= room_slowdown:
 		top_rooms = top_too_many
 		left_rooms = left_too_many
 		right_rooms = right_too_many
