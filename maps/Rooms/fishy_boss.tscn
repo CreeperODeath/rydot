@@ -430,7 +430,7 @@ tile_data = PoolIntArray( 65537, 8, 0, 65538, 1, 0, 65539, 2, 0, 65540, 1, 0, 65
 script = ExtResource( 3 )
 
 [node name="Fish Boss" parent="." instance=ExtResource( 2 )]
-position = Vector2( 237, 124 )
+position = Vector2( 241, 117 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -439,7 +439,7 @@ position = Vector2( 266, 152.5 )
 shape = SubResource( 12 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 258, 324 )
+position = Vector2( 547, 151 )
 
 [node name="room_connectors" type="Node2D" parent="."]
 
@@ -447,10 +447,10 @@ position = Vector2( 258, 324 )
 position = Vector2( 265, 9 )
 
 [node name="left" type="Node2D" parent="room_connectors"]
-position = Vector2( 14, 151 )
+position = Vector2( 35, 150 )
 
 [node name="right" type="Node2D" parent="room_connectors"]
-position = Vector2( 521, 151 )
+position = Vector2( 496, 151 )
 
 [node name="bottom" type="Node2D" parent="room_connectors"]
 position = Vector2( 262, 271 )
