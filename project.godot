@@ -24,6 +24,10 @@ config/name="Rydot"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[global]
+
+Pits=""
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
@@ -87,6 +91,7 @@ fire_right={
 2d_physics/layer_2="Walls"
 2d_physics/layer_3="Enemies"
 2d_physics/layer_4="Projectiles"
+2d_physics/layer_5="Pits"
 
 [physics]
 
