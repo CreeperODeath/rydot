@@ -3,7 +3,7 @@ extends Node
 var rng = RandomNumberGenerator.new()
 
 export var room_count = 0
-var room_slowdown = 5
+var room_slowdown = 10
 
 class_name room_variables
 var basic_room = "res://maps/Rooms/room_template.tscn"

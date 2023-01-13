@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+export var debug = false
 export var health = 20
 export var move_speed = 0.0
 export var max_speed = 200.0
@@ -13,7 +14,9 @@ var x_dir = 0
 var y_dir = 0
 
 func _ready():
-	pass
+	if debug:
+		max_speed = 500
+		get_node("CollisionShape2D").set_disabled(true)
 
 func check_win():
 	pass

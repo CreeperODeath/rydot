@@ -29,9 +29,7 @@ position = Vector2( 72, 104 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 135 )
-collision_layer = 0
-collision_mask = 0
-max_speed = 500.0
+debug = true
 
 [node name="LaserDrone" parent="." instance=ExtResource( 5 )]
 position = Vector2( 165.757, 110.908 )
