@@ -30,9 +30,11 @@ animations = [ {
 extents = Vector2( 2.66918, 0.676479 )
 
 [node name="Drone Laser" type="KinematicBody2D"]
+z_as_relative = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

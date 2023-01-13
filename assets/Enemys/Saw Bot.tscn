@@ -83,9 +83,8 @@ height = 8.14032
 [sub_resource type="CircleShape2D" id=18]
 radius = 234.893
 
-[node name="Saw Bot" type="KinematicBody2D" groups=[
-"enemy",
-]]
+[node name="Saw Bot" type="KinematicBody2D" groups=["enemy"]]
+z_as_relative = false
 collision_layer = 4
 collision_mask = 7
 script = ExtResource( 2 )
