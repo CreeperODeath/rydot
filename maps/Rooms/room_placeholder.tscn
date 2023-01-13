@@ -21,28 +21,28 @@ shape = SubResource( 13 )
 [node name="left_room_detector" type="Area2D" parent="." groups=["room_detector"]]
 position = Vector2( 496, -3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="left_room_detector" groups=["room"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_room_detector"]
 position = Vector2( -678, 149 )
 shape = SubResource( 12 )
 
 [node name="right_room_detector" type="Area2D" parent="." groups=["room_detector"]]
 position = Vector2( -494, 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="right_room_detector" groups=["room"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_room_detector"]
 position = Vector2( 1198.5, 155.5 )
 shape = SubResource( 12 )
 
 [node name="top_room_detector" type="Area2D" parent="." groups=["room_detector"]]
 position = Vector2( -2, -300 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="top_room_detector" groups=["room"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top_room_detector"]
 position = Vector2( 252, 197 )
 shape = SubResource( 12 )
 
 [node name="bottom_room_detector" type="Area2D" parent="."]
 position = Vector2( 11, 306 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_room_detector" groups=["room"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_room_detector"]
 position = Vector2( 254, 107 )
 shape = SubResource( 12 )
 

@@ -2,8 +2,10 @@ extends Node
 
 var rng = RandomNumberGenerator.new()
 
+export var debug = false
 export var room_count = 0
-var room_slowdown = 10
+export var room_slowdown = 10
+
 
 class_name room_variables
 var basic_room = "res://maps/Rooms/room_template.tscn"
@@ -61,7 +63,8 @@ var right_too_many = ["left_opening"]
 var bottom_too_many = ["top_opening"]
 
 func _process(delta):
-	print (room_count)
+	if debug == true:
+		print (room_count)
 
 
 func make_less_rooms():

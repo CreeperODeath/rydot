@@ -3,7 +3,7 @@ extends Node2D
 onready var room_var = get_node("/root/World/room_variables")
 
 var debug = false
-
+var collision = false
 
 
 #-----------room placeholder-----------
@@ -61,6 +61,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if collision == true:
+		queue_free()
 	if room_id != "n/a":
 		left_opening = room_var.room_sides_dic[room_id]["left"]
 		right_opening = room_var.room_sides_dic[room_id]["right"]
@@ -197,3 +199,15 @@ func _on_bottom_room_detector_area_entered(area):
 func _on_room_indicator_area_entered(area):
 	if area.is_in_group("player"):
 		local_spawn_active = true
+	if area.is_in_group("room"):
+		if area.get_parent().collision == false:
+			local_spawn_active = false
+			collision = true
+			room_var.room_count -= 1
+			if debug:
+				print("room collision")
+		else:
+			if debug:
+				print ("collision resolved")
+			else:
+				pass
