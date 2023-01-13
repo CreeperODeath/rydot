@@ -26,7 +26,24 @@ var room_dic = {
 	"t_room" : "res://maps/Rooms/t_room.tscn",
 	"top_left" : "res://maps/Rooms/top_left.tscn",
 	"right_bottom" : "res://maps/Rooms/right_bottom.tscn",
-	"start_room" : "res://maps/Rooms/start_room.tscn"}
+	"start_room" : "res://maps/Rooms/start_room.tscn",
+	"2-H Pit 4-way" : "res://maps/Rooms/2-H Pit 4-way.tscn",
+	"2-H Pit up-down" : "res://maps/Rooms/2-H Pit up-down.tscn",
+	"2-H Pit left-right" : "res://maps/Rooms/2-H Pit left-right.tscn",
+	"2-V Pit 4-way" : "res://maps/Rooms/2-V Pit 4-way.tscn",
+	"2-V Pit up-down" : "res://maps/Rooms/2-V Pit up-down.tscn",
+	"2-V Pit left-right" : "res://maps/Rooms/2-V Pit left-right.tscn",
+	"Pillar 4-way" : "res://maps/Rooms/Pillar 4-way.tscn",
+	"Pillar down-left" : "res://maps/Rooms/Pillar down-left.tscn",
+	"Pillar down-right" : "res://maps/Rooms/Pillar down-right.tscn",
+	"Pillar down" : "res://maps/Rooms/Pillar down.tscn",
+	"Pillar left-right" : "res://maps/Rooms/Pillar left-right.tscn",
+	"Pillar left" : "res://maps/Rooms/Pillar left.tscn",
+	"Pillar right" : "res://maps/Rooms/Pillar right.tscn",
+	"Pillar up-down" : "res://maps/Rooms/Pillar up-down.tscn",
+	"Pillar up-left" : "res://maps/Rooms/Pillar up-left.tscn",
+	"Pillar up-right" : "res://maps/Rooms/Pillar up-right.tscn",
+	"Pillar up" : "res://maps/Rooms/Pillar up.tscn"}
 
 var room_sides_dic = {
 	"basic_room": {"left": true, "right" : true, "top" : true, "bottom": true},
@@ -37,17 +54,34 @@ var room_sides_dic = {
 	"t_room" : {"left": true, "right" : true, "top" : false, "bottom": true},
 	"top_left" : {"left": true, "right" : false, "top" : true, "bottom": false},
 	"right_bottom" : {"left": false, "right" : true, "top" : false, "bottom": true},
-	"start_room" : {"left": true, "right" : true, "top" : true, "bottom": true}
+	"start_room" : {"left": true, "right" : true, "top" : true, "bottom": true},
+	"2-H Pit 4-way" : {"left": true, "right" : true, "top" : true, "bottom": true},
+	"2-H Pit up-down" : {"left": false, "right" : false, "top" : true, "bottom": true},
+	"2-H Pit left-right" : {"left": true, "right" : true, "top" : false, "bottom": false},
+	"2-V Pit 4-way" : {"left": true, "right" : true, "top" : true, "bottom": true},
+	"2-V Pit up-down" : {"left": false, "right" : false, "top" : true, "bottom": true},
+	"2-V Pit left-right" : {"left": true, "right" : true, "top" : false, "bottom": false},
+	"Pillar 4-way" : {"left": true, "right" : true, "top" : true, "bottom": true},
+	"Pillar down-left" : {"left": true, "right" : false, "top" : false, "bottom": true},
+	"Pillar down-right" : {"left": false, "right" : true, "top" : false, "bottom": true},
+	"Pillar down" : {"left": false, "right" : false, "top" : false, "bottom": true},
+	"Pillar left-right" : {"left": true, "right" : true, "top" : false, "bottom": false},
+	"Pillar left" : {"left": true, "right" : false, "top" : false, "bottom": false},
+	"Pillar right" : {"left": false, "right" : true, "top" : false, "bottom": false},
+	"Pillar up-down" : {"left": false, "right" : false, "top" : true, "bottom": true},
+	"Pillar up-left" : {"left": true, "right" : false, "top" : true, "bottom": false},
+	"Pillar up-right" : {"left": false, "right" : true, "top" : true, "bottom": false},
+	"Pillar up" : {"left": false, "right" : false, "top" : true, "bottom": false}
 }
 
 
 
 
 
-var top_rooms_raw = ["basic_room", "bottom_opening", "t_room", "right_bottom"]
-var left_rooms_raw = ["basic_room", "right_opening", "t_room", "right_bottom"]
-var right_rooms_raw = ["basic_room", "left_opening", "t_room", "top_left"]
-var bottom_rooms_raw = ["basic_room", "top_opening", "top_left"]
+var top_rooms_raw = ["basic_room", "bottom_opening", "t_room", "right_bottom", "2-H Pit 4-way", "2-H Pit up-down", "2-V Pit 4-way", "2-V Pit up-down", "Pillar 4-way", "Pillar down-left", "Pillar down-right", "Pillar up-down", "Pillar down"]
+var left_rooms_raw = ["basic_room", "right_opening", "t_room", "right_bottom", "2-H Pit 4-way", "2-H Pit left-right", "2-V Pit 4-way", "2-V Pit left-right", "Pillar 4-way", "Pillar up-right", "Pillar down-right", "Pillar left-right", "Pillar right"]
+var right_rooms_raw = ["basic_room", "left_opening", "t_room", "top_left", "2-H Pit 4-way", "2-H Pit left-right", "2-V Pit 4-way", "2-V Pit left-right", "Pillar 4-way", "Pillar down-left", "Pillar up-left", "Pillar left-right", "Pillar left"]
+var bottom_rooms_raw = ["basic_room", "top_opening", "top_left", "2-H Pit 4-way", "2-H Pit up-down", "2-V Pit 4-way", "2-V Pit up-down", "Pillar 4-way", "Pillar up-right", "Pillar up-left", "Pillar up-down", "Pillar up"]
 
 #------These are the active rooms in the selection---------
 var top_rooms = top_rooms_raw

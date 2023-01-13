@@ -23,12 +23,14 @@ autostart = true
 
 [node name="BoomBot" parent="." instance=ExtResource( 8 )]
 position = Vector2( 336.758, 84.8055 )
+collision_mask = 17
 
 [node name="Steam Trap" parent="." instance=ExtResource( 4 )]
 position = Vector2( 72, 104 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 135 )
+collision_mask = 17
 max_speed = 500.0
 
 [node name="LaserDrone" parent="." instance=ExtResource( 5 )]
@@ -50,6 +52,7 @@ position = Vector2( 185.102, 109.596 )
 
 [node name="Saw Bot" parent="." instance=ExtResource( 9 )]
 position = Vector2( 296.296, 135.196 )
+collision_mask = 23
 
 [node name="Fish Boss" parent="." instance=ExtResource( 9 )]
 position = Vector2( 264.854, 178.933 )
