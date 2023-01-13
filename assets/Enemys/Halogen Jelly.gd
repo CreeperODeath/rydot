@@ -47,7 +47,7 @@ func movement():
 		if velocity > Vector2(0,0):
 			halogen_sprite.set_animation("run")
 		else:
-			halogen_sprite.set_animation("idle")
+			halogen_sprite.set_animation("Idle")
 		move_and_slide(velocity)
 		
 		if collision:

@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-onready var player = get_node("../Player")
+onready var player = get_parent().get_node("Player")
 onready var sprite = $AnimatedSprite
-var speed = 130
+var speed = 80
 var health = 5
 var dir = Vector2()
 var chase = false
@@ -14,15 +14,15 @@ func _on_hit_body_entered(body):
 	if body.is_in_group("damage_enemy"):
 		health -= 1
 
-func _on_vision_body_entered(body):
+func _on_Vision_body_entered(body):
 	if body == (player):
 		chase = true
-		sprite.set_animation("run")
+		sprite.set_animation("Moving")
 
-func _on_vision_body_exited(body):
+func _on_Vision_body_exited(body):
 	if body == (player):
 		chase = false
-		sprite.set_animation("idle")
+		sprite.set_animation("Idle")
 		dir = Vector2(0,0)
 	
 func _ready():

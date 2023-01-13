@@ -86,7 +86,6 @@ func _physics_process(_delta):
 			move_speed = 0
 	else:
 		player_sprite.set_animation("run") 
-		player_sprite.set_animation("run") 
 		if move_speed < max_speed:
 			if x_dir != 0 or y_dir != 0:
 				move_speed += 20
