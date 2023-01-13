@@ -108,12 +108,13 @@ height = 9.98903
 radius = 147.454
 
 [node name="Halogen Jelly" type="KinematicBody2D"]
+z_as_relative = false
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 21 )
 animation = "Idle"
-frame = 10
+frame = 8
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -147,11 +147,12 @@ animations = [ {
 radius = 4.55345
 
 [node name="LaserDrone" type="KinematicBody2D"]
+z_as_relative = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 33 )
 animation = "Idle"
-frame = 5
+frame = 8
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
