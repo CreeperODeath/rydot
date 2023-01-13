@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/Enemys/pop.mp3" type="AudioStream" id=2]
+[ext_resource path="res://assets/Enemys/fire_ball.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 6.0
+height = 2.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 174.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 8.0
+
+[node name="fire_ball" type="KinematicBody2D" groups=["1d4_damage", "enemy"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 3 )
+speed = 10.0
+
+[node name="death_sound" type="AudioStreamPlayer" parent="."]
+process_priority = 1
+stream = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1.90735e-06, 1 )
+rotation = 1.5708
+scale = Vector2( 0.212497, 0.206302 )
+frames = SubResource( 3 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1 )
+shape = SubResource( 2 )
+
+[node name="vision" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vision"]
+shape = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[node name="wait" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="hit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit"]
+position = Vector2( 0, 1 )
+shape = SubResource( 5 )
+
+[connection signal="finished" from="death_sound" to="." method="_on_AudioStreamPlayer_finished"]
+[connection signal="body_entered" from="vision" to="." method="_on_vision_body_entered"]
+[connection signal="body_exited" from="vision" to="." method="_on_vision_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="wait" to="." method="_on_wait_timeout"]
+[connection signal="body_entered" from="hit" to="." method="_on_hit_body_entered"]
