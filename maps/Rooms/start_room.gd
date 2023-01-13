@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var room_var = room_variables.new()
+onready var room_var = get_node("/root/World/room_variables")
 
 var debug = false
 
@@ -12,26 +12,26 @@ onready var room_self = load(room_var["basic_room"])
 
 
 #----------left room var----------
-onready var left_room = load(room_var.get_room("left", room_id))
+#onready var left_room = load(room_var.get_room("left", room_id))
 onready var left_room_id = room_var.get_random_room_id("left")
 onready var left_node = $room_connectors/left
 var left_spawned = false
 
 
 #---------right room var-----------
-onready var right_room = load(room_var.get_room("right", room_id))
+#onready var right_room = load(room_var.get_room("right", room_id))
 onready var right_room_id = room_var.get_random_room_id("right")
 onready var right_node = $room_connectors/right
 var right_spawned = false
 
 #---------top room var-----------
-onready var top_room = load(room_var.get_room("top", room_id))
+#onready var top_room = load(room_var.get_room("top", room_id))
 onready var top_room_id = room_var.get_random_room_id("top")
 onready var top_node = $room_connectors/top
 var top_spawned = false
 
 #---------bottom room var-----------
-onready var bottom_room = load(room_var.get_room("bottom", room_id))
+#onready var bottom_room = load(room_var.get_room("bottom", room_id))
 onready var bottom_room_id = room_var.get_random_room_id("bottom")
 onready var bottom_node = $room_connectors/bottom
 var bottom_spawned = false
@@ -56,6 +56,8 @@ onready var top_room_detected = false
 onready var bottom_room_detected = false
 export var spawned_self = false
 
+func _ready():
+	room_var.room_count += 1
 
 
 func _physics_process(delta):
@@ -108,6 +110,7 @@ func spawn_room_left():
 	
 	
 	
+	
 func spawn_room_right():
 	var room_instence = room_placeholder.instance()
 	get_parent().add_child(room_instence)
@@ -115,6 +118,7 @@ func spawn_room_right():
 	room_instence.global_position.y = global_position.y
 	room_instence.room_id = right_room_id
 	right_spawned = true
+	
 	
 func spawn_room_top():
 	var room_instence = room_placeholder.instance()
@@ -125,6 +129,8 @@ func spawn_room_top():
 	top_spawned = true
 	
 	
+	
+	
 func spawn_room_bottom():
 	var room_instence = room_placeholder.instance()
 	get_parent().add_child(room_instence)
@@ -132,6 +138,8 @@ func spawn_room_bottom():
 	room_instence.global_position.x = global_position.x
 	room_instence.room_id = bottom_room_id
 	bottom_spawned = true
+	
+	
 
 func spawn_self():
 	var room_instence = room_self.instance()

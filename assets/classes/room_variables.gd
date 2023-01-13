@@ -2,8 +2,8 @@ extends Node
 
 var rng = RandomNumberGenerator.new()
 
-var room_count = 0
-var room_slowdown = 3
+export var room_count = 0
+var room_slowdown = 5
 
 class_name room_variables
 var basic_room = "res://maps/Rooms/room_template.tscn"
@@ -60,6 +60,9 @@ var left_too_many = ["right_opening"]
 var right_too_many = ["left_opening"]
 var bottom_too_many = ["top_opening"]
 
+func _process(delta):
+	print (room_count)
+
 
 func make_less_rooms():
 	top_rooms = top_too_many
@@ -75,38 +78,38 @@ func less_rooms_check():
 		bottom_rooms = bottom_too_many
 
 
-
-func get_room(room, exclude):
-	if room_count >= 10:
-		make_less_rooms()
-	rng.randomize()
-	var room_spawned = false
-	while room_spawned == false:
-		if room == "left":
-			var room_selected = left_rooms[rng.randi_range(0, left_rooms.size() - 1)]
-			if room_selected != exclude:
-				room_spawned = true
-				room_count += 1
-				return room_selected
-		elif room == "right":
-			var room_selected = right_rooms[rng.randi_range(0, right_rooms.size() - 1)]
-			if room_selected != exclude:
-				room_spawned = true
-				room_count += 1
-				return room_selected
-		elif room == "bottom":
-			var room_selected = bottom_rooms[rng.randi_range(0, bottom_rooms.size() - 1)]
-			if room_selected != exclude:
-				room_spawned = true
-				room_count += 1
-				return room_selected
-		elif room == "top":
-			var room_selected = top_rooms[rng.randi_range(0, top_rooms.size() - 1)]
-			if room_selected != exclude:
-				room_spawned = true
-				room_count += 1
-				return room_selected
-				
+#
+#func get_room(room, exclude):
+#	if room_count >= 10:
+#		make_less_rooms()
+#	rng.randomize()
+#	var room_spawned = false
+#	while room_spawned == false:
+#		if room == "left":
+#			var room_selected = left_rooms[rng.randi_range(0, left_rooms.size() - 1)]
+#			if room_selected != exclude:
+#				room_spawned = true
+#				room_count += 1
+#				return room_selected
+#		elif room == "right":
+#			var room_selected = right_rooms[rng.randi_range(0, right_rooms.size() - 1)]
+#			if room_selected != exclude:
+#				room_spawned = true
+#				room_count += 1
+#				return room_selected
+#		elif room == "bottom":
+#			var room_selected = bottom_rooms[rng.randi_range(0, bottom_rooms.size() - 1)]
+#			if room_selected != exclude:
+#				room_spawned = true
+#				room_count += 1
+#				return room_selected
+#		elif room == "top":
+#			var room_selected = top_rooms[rng.randi_range(0, top_rooms.size() - 1)]
+#			if room_selected != exclude:
+#				room_spawned = true
+#				room_count += 1
+#				return room_selected
+#
 
 func get_random_room_id(side):
 	less_rooms_check()
@@ -122,6 +125,5 @@ func get_random_room_id(side):
 		 room_selected = bottom_rooms[rng.randi_range(0, bottom_rooms.size() - 1)]
 	else:
 		print("invalid room side")
-	room_count += 1
 	return room_selected		
 		
