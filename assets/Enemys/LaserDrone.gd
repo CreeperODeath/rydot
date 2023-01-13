@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var player = get_parent().get_node("Player")
+onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
 var speed = 50
 var health = 5
