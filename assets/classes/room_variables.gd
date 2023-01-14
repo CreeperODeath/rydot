@@ -45,7 +45,7 @@ var room_dic = {
 	"Pillar up-right" : "res://maps/Rooms/Pillar up-right.tscn",
 	"Pillar up" : "res://maps/Rooms/Pillar up.tscn"}
 
-var room_sides_dic = {
+export var room_sides_dic = {
 	"basic_room": {"left": true, "right" : true, "top" : true, "bottom": true},
 	"left_opening" : {"left": true, "right" : false, "top" : false, "bottom": false},
 	"right_opening" : {"left": false, "right" : true, "top" : false, "bottom": false},
