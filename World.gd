@@ -4,6 +4,7 @@ extends Node2D
 
 
 export var time = 600
+export var coins = 0
 
 func _on_Timer_timeout():
 	time -= 1

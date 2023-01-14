@@ -3,6 +3,7 @@ extends KinematicBody2D
 onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
 onready var time = $AttackTimer
+onready var world = get_node("/root/World")
 onready var AttackInstance = preload("res://assets/Enemys/Ball_Lightning.tscn")
 var speed = 40
 var health = 5
@@ -45,6 +46,10 @@ func _ready():
 
 func _process(delta):
 	if health <= 0:
+		if is_instance_valid(world):
+			world.coins
+			if world.coins != null:
+				world.coins += 20
 		queue_free()
 	if stop == false:
 		if chase == true:

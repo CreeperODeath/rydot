@@ -137,14 +137,14 @@ radius = 163.82
 extents = Vector2( 42.5, 140.752 )
 
 [node name="LaserDrone" type="KinematicBody2D"]
-collision_layer = 4
-collision_mask = 23
+collision_layer = 32
+collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 28 )
 animation = "Idle"
-frame = 13
+frame = 7
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

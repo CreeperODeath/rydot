@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
+onready var world = get_node("/root/World")
 onready var BombInstance = preload("res://assets/Enemys/BoomBot Explosion.tscn")
 var speed = 130
 var health = 5
@@ -34,6 +35,10 @@ func _on_AnimatedSprite_animation_finished():
 		var bomb = BombInstance.instance()
 		bomb.position = self.position
 		get_parent().add_child(bomb)
+		if is_instance_valid(world):
+			world.coins
+			if world.coins != null:
+				world.coins += 5
 		queue_free()
 
 func _on_explode_radius_body_entered(body):
@@ -47,6 +52,10 @@ func _ready():
 
 func _process(delta):
 	if health <= 0:
+		if is_instance_valid(world):
+			world.coins
+			if world.coins != null:
+				world.coins += 5
 		queue_free()
 	if boom == false:
 		if chase == true:

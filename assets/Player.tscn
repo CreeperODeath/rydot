@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/spites/the boi.png" type="Texture" id=2]
 [ext_resource path="res://assets/PixeloidSans-nR3g1.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://time_display.gd" type="Script" id=4]
+[ext_resource path="res://assets/coin_display.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.75
@@ -70,13 +71,25 @@ playing = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="time_display" type="RichTextLabel" parent="CanvasLayer"]
-margin_left = 34.0
-margin_top = 28.0
-margin_right = 234.0
-margin_bottom = 128.0
+margin_left = 33.5281
+margin_top = 27.5281
+margin_right = 233.528
+margin_bottom = 127.528
 theme = SubResource( 9 )
 text = "TIME: "
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="coin_display" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = 234.0
+margin_top = 28.0
+margin_right = 462.0
+margin_bottom = 147.0
+theme = SubResource( 9 )
+text = "Coins:"
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
