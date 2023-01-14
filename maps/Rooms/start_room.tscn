@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/spites/halee_texture.png" type="Texture" id=1]
+[ext_resource path="res://maps/items/barrel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Enemys/BoomBot.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -424,4 +425,6 @@ tile_data = PoolIntArray( 14, 7, 0, 15, 4, 0, 16, 3, 0, 17, 4, 0, 18, 9, 0, 6553
 
 [node name="BoomBot" parent="." instance=ExtResource( 3 )]
 position = Vector2( 113, 59 )
-z_as_relative = false
+
+[node name="barrell" parent="." instance=ExtResource( 2 )]
+position = Vector2( 256, 111 )

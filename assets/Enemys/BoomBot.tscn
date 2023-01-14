@@ -146,10 +146,11 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 27 )
 animation = "idle"
-frame = 6
+frame = 1
 playing = true
 
 [node name="vision" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="vision"]

@@ -3,7 +3,10 @@ extends Node2D
 onready var room_var = get_node("/root/World/room_variables")
 
 var debug = false
+var detcted_possible_collision = false
 var collision = false
+
+var room_colided
 
 
 #-----------room placeholder-----------
@@ -61,6 +64,14 @@ func _ready():
 
 
 func _physics_process(delta):
+	if detcted_possible_collision == true:
+		
+		if is_instance_valid(room_colided):
+			if room_colided.collision == false:
+				collision = true
+				
+			
+			
 	if collision == true:
 		queue_free()
 	if room_id != "n/a":
@@ -200,6 +211,8 @@ func _on_room_indicator_area_entered(area):
 	if area.is_in_group("player"):
 		local_spawn_active = true
 	if area.is_in_group("room"):
+		detcted_possible_collision = true
+		room_colided = area.get_parent()
 		if area.get_parent().collision == false:
 			local_spawn_active = false
 			collision = true
@@ -211,3 +224,8 @@ func _on_room_indicator_area_entered(area):
 				print ("collision resolved")
 			else:
 				pass
+
+
+func _on_player_detector_area_entered(area):
+	if area.is_in_group("player"):
+		local_spawn_active = true

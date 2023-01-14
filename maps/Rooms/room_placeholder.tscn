@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://maps/Rooms/start_room.gd" type="Script" id=3]
 
@@ -7,6 +7,9 @@ extents = Vector2( 227.5, 119.5 )
 
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 177.5, 108.5 )
+
+[sub_resource type="CircleShape2D" id=14]
+radius = 649.407
 
 [node name="room detector" type="Node2D"]
 script = ExtResource( 3 )
@@ -60,8 +63,15 @@ position = Vector2( 521, 151 )
 [node name="bottom" type="Node2D" parent="room_connectors"]
 position = Vector2( 265, 296 )
 
+[node name="player_detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector"]
+position = Vector2( 265, 159 )
+shape = SubResource( 14 )
+
 [connection signal="area_entered" from="room_indicator" to="." method="_on_room_indicator_area_entered"]
 [connection signal="area_entered" from="left_room_detector" to="." method="_on_left_room_detector_area_entered"]
 [connection signal="area_entered" from="right_room_detector" to="." method="_on_right_room_detector_area_entered"]
 [connection signal="area_entered" from="top_room_detector" to="." method="_on_top_room_detector_area_entered"]
 [connection signal="area_entered" from="bottom_room_detector" to="." method="_on_bottom_room_detector_area_entered"]
+[connection signal="area_entered" from="player_detector" to="." method="_on_player_detector_area_entered"]
