@@ -19,6 +19,7 @@ onready var room_self = load(room_var["basic_room"])
 onready var left_room_id = room_var.get_random_room_id("left")
 onready var left_node = $room_connectors/left
 var left_spawned = false
+var left_opening_fix = false
 
 
 #---------right room var-----------
@@ -26,19 +27,21 @@ var left_spawned = false
 onready var right_room_id = room_var.get_random_room_id("right")
 onready var right_node = $room_connectors/right
 var right_spawned = false
+var right_opening_fix = false
 
 #---------top room var-----------
 #onready var top_room = load(room_var.get_room("top", room_id))
 onready var top_room_id = room_var.get_random_room_id("top")
 onready var top_node = $room_connectors/top
 var top_spawned = false
+var top_opening_fix = false
 
 #---------bottom room var-----------
 #onready var bottom_room = load(room_var.get_room("bottom", room_id))
 onready var bottom_room_id = room_var.get_random_room_id("bottom")
 onready var bottom_node = $room_connectors/bottom
 var bottom_spawned = false
-
+var bottom_opening_fix = false
 
 
 #-------individual room stats--------
@@ -50,6 +53,7 @@ export var bottom_opening = false
 var all_rooms_spawned = false
 export var spawn_active = true
 export var local_spawn_active = false
+var self_inst
 
 
 #---------Room colision variables----------\
@@ -64,6 +68,11 @@ func _ready():
 
 
 func _physics_process(delta):
+	
+	
+	
+	
+	
 	if detcted_possible_collision == true:
 		
 		if is_instance_valid(room_colided):
@@ -74,12 +83,15 @@ func _physics_process(delta):
 			
 	if collision == true:
 		queue_free()
+	
 	if room_id != "n/a":
 		left_opening = room_var.room_sides_dic[room_id]["left"]
 		right_opening = room_var.room_sides_dic[room_id]["right"]
 		top_opening = room_var.room_sides_dic[room_id]["top"]
 		bottom_opening = room_var.room_sides_dic[room_id]["bottom"]
 		room_self = load(room_var.room_dic[room_id])
+		
+		close_room_openings()
 		
 		if spawned_self == false and local_spawn_active == true:
 			if is_instance_valid(room_self):
@@ -92,7 +104,7 @@ func _physics_process(delta):
 			if debug and spawn_active == true and room_id != "n/a":
 				print(str(room_id) + " has finished generating")
 				debug = false		
-			set_process(false)
+			#set_process(false)
 		
 			
 func room_spawn_check():
@@ -157,6 +169,7 @@ func spawn_room_bottom():
 func spawn_self():
 	var room_instence = room_self.instance()
 	get_parent().add_child(room_instence)
+	self_inst = room_instence
 	room_instence.global_position.y = global_position.y 
 	room_instence.global_position.x = global_position.x
 	spawned_self = true
@@ -165,10 +178,10 @@ func spawn_self():
 
 
 
-
 #----------Room collision detection----------
 func _on_top_room_detector_area_entered(area):
 	if area.is_in_group("room"):
+		top_room_id = area.get_parent().room_id
 		top_room_detected = true
 		top_opening = false
 		if debug:
@@ -179,6 +192,8 @@ func _on_top_room_detector_area_entered(area):
 
 func _on_right_room_detector_area_entered(area):
 	if area.is_in_group("room"):
+		right_room_id = area.get_parent().room_id
+		
 		right_room_detected = true
 		right_opening = false
 		if debug:
@@ -189,6 +204,7 @@ func _on_right_room_detector_area_entered(area):
 
 func _on_left_room_detector_area_entered(area):
 	if area.is_in_group("room"):
+		left_room_id = area.get_parent().room_id
 		left_room_detected = true
 		left_opening = false
 		if debug:
@@ -199,6 +215,7 @@ func _on_left_room_detector_area_entered(area):
 
 func _on_bottom_room_detector_area_entered(area):
 	if area.is_in_group("room"):
+		bottom_room_id = area.get_parent().room_id
 		bottom_room_detected = true
 		bottom_opening = false
 		if debug:
@@ -229,3 +246,41 @@ func _on_room_indicator_area_entered(area):
 func _on_player_detector_area_entered(area):
 	if area.is_in_group("player"):
 		local_spawn_active = true
+		
+		
+func close_room_openings():
+	
+	if room_var.room_sides_dic[left_room_id]["right"] != true and left_opening_fix != true:
+		if spawned_self == true:
+			if  room_var.room_sides_dic[room_id]["left"] != false:
+				self_inst.set_cell(1,7,7)
+				self_inst.set_cell(1,8,7)
+				self_inst.set_cell(1,9,7)
+				self_inst.set_cell(1,10,7)
+				self_inst.set_cell(1,11,7)
+				self_inst.set_cell(0,7,7)
+				self_inst.set_cell(0,8,7)
+				self_inst.set_cell(0,9,7)
+				self_inst.set_cell(0,10,7)
+				self_inst.set_cell(0,11,7)
+				self_inst.update_dirty_quadrants()
+				print("closed left opening " + room_id)
+				left_opening_fix = true
+				
+	if room_var.room_sides_dic[right_room_id]["left"] != true and right_opening_fix != true:
+		if spawned_self == true:
+			if  room_var.room_sides_dic[room_id]["right"] != false:
+				self_inst.set_cell(31,7,9)
+				self_inst.set_cell(31,8,9)
+				self_inst.set_cell(31,9,9)
+				self_inst.set_cell(31,10,9)
+				self_inst.set_cell(31,11,9)
+				self_inst.set_cell(32,7,9)
+				self_inst.set_cell(32,8,9)
+				self_inst.set_cell(32,9,9)
+				self_inst.set_cell(32,10,9)
+				self_inst.set_cell(32,11,9)
+				self_inst.update_dirty_quadrants()
+				print("closed right opening " + room_id)
+				right_opening_fix = true
+
