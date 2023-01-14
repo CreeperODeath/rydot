@@ -3,7 +3,7 @@ extends KinematicBody2D
 onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
 onready var time = $AttackTimer
-onready var LaserInstance = preload("res://assets/Enemys/Drone Laser.tscn")
+onready var AttackInstance = preload("res://assets/Enemys/Ball_Lightning.tscn")
 var speed = 40
 var health = 5
 var dir = Vector2()
@@ -58,8 +58,8 @@ func _process(delta):
 	elif stop == true:
 		if time.is_stopped():
 			time.start()
-			var Laser = LaserInstance.instance()
-			Laser.position = self.position
-			Laser.direction = (player.global_position - global_position).normalized()
-			get_parent().add_child(Laser)
+			var Ball_Lightning = AttackInstance.instance()
+			Ball_Lightning.position = self.position
+			Ball_Lightning.direction = (player.global_position - global_position).normalized()
+			get_parent().add_child(Ball_Lightning)
 
