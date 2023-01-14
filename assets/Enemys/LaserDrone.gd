@@ -2,13 +2,14 @@ extends KinematicBody2D
 
 onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
+onready var time = $WeaponTimer
+onready var LaserInstance = preload("res://assets/Enemys/Drone Laser.tscn")
 var speed = 50
 var health = 5
 var dir = Vector2()
 var chase = false
 var stop = false
 var velocity = Vector2()
-
 
 
 func _on_hit_body_entered(body):
@@ -18,7 +19,7 @@ func _on_hit_body_entered(body):
 func _on_vision_body_entered(body):
 	if body == (player):
 		chase = true
-		sprite.set_animation("Idle")
+		sprite.set_animation("Firing")
 
 func _on_vision_body_exited(body):
 	if body == (player):
@@ -36,21 +37,52 @@ func _on_Minimum_Range_body_entered(body):
 func _on_Minimum_Range_body_exited(body):
 	if body == (player):
 		stop = false
-		sprite.set_animation("Idle")
+		
+func _on_Stop_Range_body_entered(body):
+	pass # Replace with function body.
+
+
+func _on_Stop_Range_body_exited(body):
+	pass # Replace with function body.
 	
+func _on_AnimatedSprite_animation_finished():
+	if sprite.animation == "Firing":
+		var Laser = LaserInstance.instance()
+		Laser.position = self.position
+		Laser.position.y -= 2.4
+		if player.global_position.x < self.global_position.x:
+				Laser.direction = Vector2(-1, 0)
+		elif player.global_position.x > self.global_position.x:
+				Laser.direction = Vector2(1, 0)
+		get_parent().add_child(Laser)
+
 func _ready():
 	pass
 
 func _process(delta):
+	if player.global_position.x < self.global_position.x:
+		sprite.set_flip_h(true)
+	else:
+		sprite.set_flip_h(false)
 	if health <= 0:
 		queue_free()
-	if stop == false:
-		if chase == true:
-			dir = (player.global_position - global_position).normalized()
-			velocity = speed*dir
-			velocity = move_and_slide(velocity)
-			if dir.x < 0:
-				sprite.set_flip_h(true)
-			else:
-				sprite.set_flip_h(false)
-
+	if chase == true:
+		if player.global_position.y < self.global_position.y:
+			dir.y = -1
+		elif player.global_position.y > self.global_position.y:
+			dir.y = 1
+		else:
+			dir.y = 0
+		if stop == false:
+			if player.global_position.x < self.global_position.x:
+				dir.x = -1
+			elif player.global_position.x > self.global_position.x:
+				dir.x = 1
+		else:
+			if player.global_position.x < self.global_position.x:
+				dir.x = 1
+			elif player.global_position.x > self.global_position.x:
+				dir.x = -1
+		dir.y = dir.y * 2
+		velocity = speed*dir
+		velocity = move_and_slide(velocity)
