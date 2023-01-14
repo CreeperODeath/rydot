@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
-var speed = 30
+var speed = 50
 var health = 5
 var dir = Vector2()
 var chase = false
@@ -29,7 +29,7 @@ func _on_vision_body_exited(body):
 func _on_Minimum_Range_body_entered(body):
 	if body == (player):
 		stop = true
-		sprite.set_animation("Attack")
+		sprite.set_animation("Firing")
 		dir = Vector2(0,0)
 
 

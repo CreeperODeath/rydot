@@ -1,12 +1,13 @@
 extends KinematicBody2D
 
 export var debug = false
-export var health = 20
 export var move_speed = 0.0
 export var max_speed = 200.0
 onready var BulletInstance = preload("res://Bullet.tscn")
 onready var player_sprite = $AnimatedSprite
 onready var WeaponTimer1 = $WeaponTimer1
+onready var Invin = $Invincibility
+onready var world = get_node("/root/World")
 var velocity = Vector2()
 var facing_left = true
 var firing = false
@@ -98,3 +99,10 @@ func _physics_process(_delta):
 	velocity.x =  x_dir * move_speed
 	velocity.y =  y_dir * move_speed
 	velocity = move_and_slide(velocity, velocity)
+
+
+func _on_hit_body_entered(body):
+	if Invin.is_stopped():
+		if body.is_in_group("damage_player"):
+			Invin.start()
+			world.time -= 10
