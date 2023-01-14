@@ -106,3 +106,10 @@ func _on_hit_body_entered(body):
 		if body.is_in_group("damage_player"):
 			Invin.start()
 			world.time -= 10
+
+
+func _on_hit_area_entered(area):
+	if Invin.is_stopped():
+		if area.is_in_group("damage_player"):
+			Invin.start()
+			world.time -= 10
