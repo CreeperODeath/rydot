@@ -1,9 +1,10 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/spites/the boi.png" type="Texture" id=2]
 [ext_resource path="res://assets/PixeloidSans-nR3g1.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://time_display.gd" type="Script" id=4]
+
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.75
