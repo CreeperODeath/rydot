@@ -13,6 +13,13 @@ var collision = false
 var room_colided
 
 
+#---area 2D--------
+onready var left_detector = $left_room_detector
+onready var right_detector = $right_room_detector
+onready var top_detector = $top_room_detector
+onready var bottom_detector = $bottom_room_detector
+onready var self_detector = $room_indicator
+
 #-----------room placeholder-----------
 onready var room_placeholder = load("res://maps/Rooms/room_placeholder.tscn")
 onready var room_self = load(room_var["basic_room"])
@@ -76,7 +83,9 @@ func _physics_process(delta):
 	
 	
 	
-	
+	scan_collision()
+	get_neighbors()
+	close_room_openings()
 	if detcted_possible_collision == true:
 		
 		collision_check()
@@ -95,7 +104,6 @@ func _physics_process(delta):
 		bottom_opening = room_var.room_sides_dic[room_id]["bottom"]
 		room_self = load(room_var.room_dic[room_id])
 		
-		close_room_openings()
 		
 		if spawned_self == false and local_spawn_active == true:
 			if is_instance_valid(room_self):
@@ -111,6 +119,9 @@ func _physics_process(delta):
 			#set_process(false)
 		
 			
+		
+			
+#----------------spawn funtions----------
 func room_spawn_check():
 	if is_instance_valid(room_placeholder):
 		if left_opening == true and left_room_detected == false:
@@ -136,10 +147,6 @@ func spawn_room_left():
 	room_instence.room_id = left_room_id
 	left_spawned = true
 	
-	
-	
-	
-	
 func spawn_room_right():
 	var room_instence = room_placeholder.instance()
 	get_parent().add_child(room_instence)
@@ -147,7 +154,6 @@ func spawn_room_right():
 	room_instence.global_position.y = global_position.y
 	room_instence.room_id = right_room_id
 	right_spawned = true
-	
 	
 func spawn_room_top():
 	var room_instence = room_placeholder.instance()
@@ -157,9 +163,6 @@ func spawn_room_top():
 	room_instence.room_id = top_room_id
 	top_spawned = true
 	
-	
-	
-	
 func spawn_room_bottom():
 	var room_instence = room_placeholder.instance()
 	get_parent().add_child(room_instence)
@@ -168,8 +171,6 @@ func spawn_room_bottom():
 	room_instence.room_id = bottom_room_id
 	bottom_spawned = true
 	
-	
-
 func spawn_self():
 	var room_instence = room_self.instance()
 	get_parent().add_child(room_instence)
@@ -197,6 +198,7 @@ func _on_top_room_detector_area_entered(area):
 func _on_right_room_detector_area_entered(area):
 	if area.is_in_group("room"):
 		right_room_id = area.get_parent().room_id
+	
 		
 		right_room_detected = true
 		right_opening = false
@@ -257,6 +259,7 @@ func _on_player_detector_area_entered(area):
 #----------closing openings---------
 func close_room_openings():
 	#patch left openings
+	get_neighbors()
 	if room_var.room_sides_dic[left_room_id]["right"] != true and left_opening_fix != true:
 		if spawned_self == true:
 			if  room_var.room_sides_dic[room_id]["left"] != false:
@@ -308,16 +311,57 @@ func close_room_openings():
 					print("closed bottom opening " + room_id)
 					bottom_opening_fix = true
 
-
-
+func get_neighbors():
+	var left_areas = left_detector.get_overlapping_areas()
+	for area in left_areas:
+		if area.is_in_group("room"):
+			if left_room_id != area.get_parent().room_id:
+				left_room_id = area.get_parent().room_id
+				left_opening_fix = false
+				#print(left_room_id)
+			
+			
+	var right_areas = right_detector.get_overlapping_areas()
+	for area in right_areas:
+		if area.is_in_group("room"):
+			if right_room_id != area.get_parent().room_id:
+				right_room_id = area.get_parent().room_id
+				right_opening_fix = false
+				#print(right_room_id)
+				
+	var top_areas = top_detector.get_overlapping_areas()
+	for area in top_areas:
+		if area.is_in_group("room"):
+			if top_room_id != area.get_parent().room_id:
+				top_room_id = area.get_parent().room_id
+				top_opening_fix = false
+				#print(top_room_id)
+				
+	var bottom_areas = left_detector.get_overlapping_areas()
+	for area in bottom_areas:
+		if area.is_in_group("room"):
+			if bottom_room_id != area.get_parent().room_id:
+				bottom_room_id = area.get_parent().room_id
+				bottom_opening_fix = false
+				#print(bottom_room_id)
+			
 func _on_Timer_timeout():
 	if is_instance_valid(room_colided):
 		print("collison")
 		room_var.room_count -= 1
 		queue_free()
 		
+func scan_collision():
+	var self_areas = self_detector.get_overlapping_areas()
+	for area in self_areas:
+		if area.is_in_group("room"):
+			detcted_possible_collision = true
+			room_colided = area.get_parent()
+			print("detected self")
+			break
 
 func collision_check():
+	
 	if is_instance_valid(room_colided):
 		if room_colided.collision == false:
 			collision = true
