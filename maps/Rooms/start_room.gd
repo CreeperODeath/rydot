@@ -2,6 +2,10 @@ extends Node2D
 
 onready var room_var = get_node("/root/World/room_variables")
 
+onready var rng = RandomNumberGenerator.new()
+
+onready var timer = $Timer
+
 var debug = false
 var detcted_possible_collision = false
 var collision = false
@@ -75,9 +79,9 @@ func _physics_process(delta):
 	
 	if detcted_possible_collision == true:
 		
-		if is_instance_valid(room_colided):
-			if room_colided.collision == false:
-				collision = true
+		collision_check()
+		
+	
 				
 			
 			
@@ -248,8 +252,11 @@ func _on_player_detector_area_entered(area):
 		local_spawn_active = true
 		
 		
+		
+		
+#----------closing openings---------
 func close_room_openings():
-	
+	#patch left openings
 	if room_var.room_sides_dic[left_room_id]["right"] != true and left_opening_fix != true:
 		if spawned_self == true:
 			if  room_var.room_sides_dic[room_id]["left"] != false:
@@ -266,7 +273,7 @@ func close_room_openings():
 				self_inst.update_dirty_quadrants()
 				print("closed left opening " + room_id)
 				left_opening_fix = true
-				
+	#patch right opening
 	if room_var.room_sides_dic[right_room_id]["left"] != true and right_opening_fix != true:
 		if spawned_self == true:
 			if  room_var.room_sides_dic[room_id]["right"] != false:
@@ -283,4 +290,37 @@ func close_room_openings():
 				self_inst.update_dirty_quadrants()
 				print("closed right opening " + room_id)
 				right_opening_fix = true
+		#patch bottom opening
+		if room_var.room_sides_dic[bottom_room_id]["top"] != true and bottom_opening_fix != true:
+			if spawned_self == true:
+				if  room_var.room_sides_dic[room_id]["bottom"] != false:
+					self_inst.set_cell(14,17,13)
+					self_inst.set_cell(15,17,13)
+					self_inst.set_cell(16,17,13)
+					self_inst.set_cell(17,17,13)
+					self_inst.set_cell(18,17,13)
+					self_inst.set_cell(14,18,13)
+					self_inst.set_cell(15,18,13)
+					self_inst.set_cell(16,18,13)
+					self_inst.set_cell(17,18,13)
+					self_inst.set_cell(18,18,13)
+					self_inst.update_dirty_quadrants()
+					print("closed bottom opening " + room_id)
+					bottom_opening_fix = true
 
+
+
+func _on_Timer_timeout():
+	if is_instance_valid(room_colided):
+		print("collison")
+		room_var.room_count -= 1
+		queue_free()
+		
+
+func collision_check():
+	if is_instance_valid(room_colided):
+		if room_colided.collision == false:
+			collision = true
+		else:
+			rng.randomize()
+			timer.set_wait_time(rng.randf_range(.0001,.01))
