@@ -26,7 +26,7 @@ func check_win():
 func _process(_delta):
 #-------------------Shooty code--------------------
 	if Input.is_action_just_pressed("exit"):
-		get_tree().quit()
+		pass
 	if Input.is_action_pressed("fire_right") or Input.is_action_pressed("fire_left") or Input.is_action_pressed("fire_up") or Input.is_action_pressed("fire_down"):
 		firing = true
 	else:
