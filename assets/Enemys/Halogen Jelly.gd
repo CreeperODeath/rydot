@@ -2,7 +2,9 @@ extends KinematicBody2D
 
 onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
-var speed = 30
+onready var time = $AttackTimer
+onready var AttackInstance = preload("res://assets/Enemys/Ball_Lightning.tscn")
+var speed = 40
 var health = 5
 var dir = Vector2()
 var chase = false
@@ -53,4 +55,11 @@ func _process(delta):
 				sprite.set_flip_h(true)
 			else:
 				sprite.set_flip_h(false)
+	elif stop == true:
+		if time.is_stopped():
+			time.start()
+			var Ball_Lightning = AttackInstance.instance()
+			Ball_Lightning.position = self.position
+			Ball_Lightning.direction = (player.global_position - global_position).normalized()
+			get_parent().add_child(Ball_Lightning)
 

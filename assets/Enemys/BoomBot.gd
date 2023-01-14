@@ -39,3 +39,8 @@ func _process(delta):
 			sprite.set_flip_h(true)
 		else:
 			sprite.set_flip_h(false)
+
+
+func _on_AnimatedSprite_animation_finished():
+	if sprite.animation = "boom":
+		

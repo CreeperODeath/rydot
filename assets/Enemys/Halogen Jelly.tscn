@@ -116,7 +116,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 21 )
 animation = "Idle"
-frame = 9
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -138,6 +138,10 @@ shape = SubResource( 24 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Minimum Range"]
 shape = SubResource( 25 )
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
 
 [connection signal="body_entered" from="hit" to="." method="_on_hit_body_entered"]
 [connection signal="body_entered" from="vision" to="." method="_on_vision_body_entered"]
