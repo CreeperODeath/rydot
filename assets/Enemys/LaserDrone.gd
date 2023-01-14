@@ -3,6 +3,7 @@ extends KinematicBody2D
 onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
 onready var time = $WeaponTimer
+onready var world = get_node("/root/World")
 onready var LaserInstance = preload("res://assets/Enemys/Drone Laser.tscn")
 var speed = 50
 var health = 5
@@ -60,12 +61,16 @@ func _ready():
 	pass
 
 func _process(delta):
+	if health <= 0:
+		if is_instance_valid(world):
+			world.coins
+			if world.coins != null:
+				world.coins += 25
+		queue_free()
 	if player.global_position.x < self.global_position.x:
 		sprite.set_flip_h(true)
 	else:
 		sprite.set_flip_h(false)
-	if health <= 0:
-		queue_free()
 	if chase == true:
 		if player.global_position.y < self.global_position.y:
 			dir.y = -1
