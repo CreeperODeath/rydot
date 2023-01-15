@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/PixeloidSans-nR3g1.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Shop_Menu.gd" type="Script" id=2]
 [ext_resource path="res://assets/coin_display.gd" type="Script" id=3]
+[ext_resource path="res://assets/spites/Start_Menu.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -26,28 +27,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
-color = Color( 0.270588, 0.45098, 0.521569, 1 )
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 4 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ButtonContainer" type="VBoxContainer" parent="."]
-anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -301.5
+margin_left = 50.0
 margin_top = -198.0
-margin_right = 301.5
+margin_right = 603.0
 margin_bottom = 198.0
 __meta__ = {
 "_edit_use_anchors_": false

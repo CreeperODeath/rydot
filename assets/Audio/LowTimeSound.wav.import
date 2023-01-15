@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/LowTimeSound.wav-5d967902c7f400f0d433242eb2b5f5c4.sample"
+
+[deps]
+
+source_file="res://assets/Audio/LowTimeSound.wav"
+dest_files=[ "res://.import/LowTimeSound.wav-5d967902c7f400f0d433242eb2b5f5c4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

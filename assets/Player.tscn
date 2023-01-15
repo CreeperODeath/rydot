@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/spites/the boi.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/coin_display.gd" type="Script" id=5]
 [ext_resource path="res://assets/Audio/PlayerShootSound.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/Audio/PlayerHit.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/Audio/LowTimeSound.wav" type="AudioStream" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.75
@@ -57,7 +58,6 @@ height = 6.23498
 ]]
 collision_mask = 6
 script = ExtResource( 1 )
-debug = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -77,6 +77,15 @@ margin_bottom = 127.528
 theme = SubResource( 8 )
 text = "Time: ? "
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LowTime" type="AudioStreamPlayer" parent="CanvasLayer/time_display"]
+stream = ExtResource( 8 )
+
+[node name="SoundTimer" type="Timer" parent="CanvasLayer/time_display"]
+one_shot = true
 
 [node name="coin_display" type="RichTextLabel" parent="CanvasLayer"]
 margin_left = 234.0
