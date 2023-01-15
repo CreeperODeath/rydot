@@ -1,9 +1,10 @@
 extends StaticBody2D
 
 
-func _on_AnimatedSprite_animation_finished():
-	queue_free()
-
-
 func _ready():
-	pass
+	print("boom")
+	$BoomTimer.start()
+
+
+func _on_BoomTimer_timeout():
+	queue_free()

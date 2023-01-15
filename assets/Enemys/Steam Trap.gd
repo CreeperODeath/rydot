@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 onready var animation = $AnimatedSprite
-onready var BombInstance = preload("res://assets/Enemys/BoomBot Explosion.tscn")
+onready var BombInstance = preload("res://assets/Enemys/Steam Explosion.tscn")
 
 
 func _ready():

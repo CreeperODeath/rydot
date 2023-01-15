@@ -39,18 +39,22 @@ func _process(_delta):
 		if Input.is_action_pressed("fire_right"):
 			Bullet.position = self.position
 			Bullet.direction = Vector2(1, 0)
+			Bullet.rotation_degrees = 90
 			get_parent().add_child(Bullet)
 		if Input.is_action_pressed("fire_left"):
 			Bullet.position = self.position
 			Bullet.direction = Vector2(-1, 0)
+			Bullet.rotation_degrees = 270
 			get_parent().add_child(Bullet)
 		if Input.is_action_pressed("fire_up"):
 			Bullet.position = self.position
 			Bullet.direction = Vector2(0, -1)
+			Bullet.rotation_degrees = 0
 			get_parent().add_child(Bullet)
 		if Input.is_action_pressed("fire_down"):
 			Bullet.position = self.position
 			Bullet.direction = Vector2(0, 1)
+			Bullet.rotation_degrees = 180
 			get_parent().add_child(Bullet)
 
 func _physics_process(_delta):
