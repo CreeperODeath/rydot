@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var player = $Player
+onready var loading_screen = $CanvasLayer2
 
 
 export var time = (60 + CoinSingleton.extra_start_time)

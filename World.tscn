@@ -1,12 +1,52 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://maps/Rooms/room_placeholder.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Audio/DeathSound.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/Audio/normal_one.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/spites/the boi.png" type="Texture" id=6]
+[ext_resource path="res://assets/spites/icon.png" type="Texture" id=7]
+[ext_resource path="res://assets/PixeloidSans-nR3g1.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/classes/room_variables.gd" type="Script" id=10]
 [ext_resource path="res://Pause.tscn" type="PackedScene" id=11]
 [ext_resource path="res://loading_time.gd" type="Script" id=12]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 13, 19 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 6 )
+region = Rect2( 13, 0, 13, 19 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 6 )
+region = Rect2( 26, 0, 13, 19 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 6 )
+region = Rect2( 39, 0, 13, 19 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 1.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+} ]
+
+[sub_resource type="DynamicFont" id=10]
+size = 106
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=11]
+default_font = SubResource( 10 )
 
 [node name="World" type="Node2D"]
 position = Vector2( 0, -2 )
@@ -20,10 +60,38 @@ script = ExtResource( 10 )
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="loading_screen" type="Node2D" parent="CanvasLayer2"]
+
+[node name="Icon" type="Sprite" parent="CanvasLayer2/loading_screen"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 354, 282 )
+rotation = -3.14159
+scale = Vector2( 56862.1, -20.9764 )
+texture = ExtResource( 7 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="CanvasLayer2/loading_screen"]
+position = Vector2( 869, 292 )
+scale = Vector2( 5, 5 )
+frames = SubResource( 9 )
+animation = "run"
+frame = 2
+playing = true
+flip_h = true
+
+[node name="Loading" type="RichTextLabel" parent="CanvasLayer2/loading_screen"]
+margin_left = 181.0
+margin_top = 222.0
+margin_right = 938.0
+margin_bottom = 393.0
+theme = SubResource( 11 )
+text = "Loading . . ."
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -1985, 85 )
 collision_mask = 17
-debug = false
 
 [node name="Timer" type="Timer" parent="Player"]
 one_shot = true
@@ -41,6 +109,10 @@ local_spawn_active = true
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = 10.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Player/Timer" to="Player/Timer" method="_on_Timer_timeout"]

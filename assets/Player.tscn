@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/spites/the boi.png" type="Texture" id=2]
@@ -49,13 +49,14 @@ font_data = ExtResource( 3 )
 [sub_resource type="Theme" id=8]
 default_font = SubResource( 7 )
 
+[sub_resource type="Theme" id=10]
+default_font = SubResource( 7 )
+
 [sub_resource type="CapsuleShape2D" id=9]
 radius = 5.40073
 height = 6.23498
 
-[node name="Player" type="KinematicBody2D" groups=[
-"player",
-]]
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_mask = 6
 script = ExtResource( 1 )
 
@@ -77,9 +78,6 @@ margin_bottom = 127.528
 theme = SubResource( 8 )
 text = "Time: ? "
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="LowTime" type="AudioStreamPlayer" parent="CanvasLayer/time_display"]
 stream = ExtResource( 8 )
@@ -92,12 +90,9 @@ margin_left = 234.0
 margin_top = 28.0
 margin_right = 462.0
 margin_bottom = 147.0
-theme = SubResource( 8 )
+theme = SubResource( 10 )
 text = "Coins:"
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="WeaponTimer1" type="Timer" parent="."]
 wait_time = 0.5
@@ -111,9 +106,7 @@ current = true
 zoom = Vector2( 0.4, 0.4 )
 smoothing_speed = 10.0
 
-[node name="hit" type="Area2D" parent="." groups=[
-"player",
-]]
+[node name="hit" type="Area2D" parent="." groups=["player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit"]
 shape = SubResource( 9 )
