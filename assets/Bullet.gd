@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var direction = Vector2()
-var speed = 320.0
+var speed = 100.0
 var velocity = Vector2()
 var pierce = 0
 
@@ -9,8 +9,8 @@ func _ready():
 	pass 
 
 func _process(_delta):
-	velocity.x = direction.x * speed
-	velocity.y = direction.y * speed
+	velocity.x = direction.x * (speed + CoinSingleton.extra_bullet_speed)
+	velocity.y = direction.y * (speed + CoinSingleton.extra_bullet_speed)
 	velocity = move_and_slide(velocity, velocity)
 
 

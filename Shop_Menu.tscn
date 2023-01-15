@@ -35,7 +35,7 @@ margin_left = -512.0
 margin_top = -300.0
 margin_right = 512.0
 margin_bottom = 300.0
-color = Color( 0.764706, 0.933333, 1, 1 )
+color = Color( 0.270588, 0.45098, 0.521569, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -45,34 +45,69 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -125.5
-margin_top = -73.0
-margin_right = 125.5
-margin_bottom = 73.0
+margin_left = -301.5
+margin_top = -198.0
+margin_right = 301.5
+margin_bottom = 198.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UpgradeButton1" type="Button" parent="ButtonContainer"]
-margin_right = 251.0
+[node name="UpgradeButton7" type="Button" parent="ButtonContainer"]
+margin_right = 603.0
 margin_bottom = 46.0
 theme = SubResource( 2 )
-text = "Upgrade 1"
+text = "50 Coins : +5 Starting Seconds"
 
-[node name="UpgradeButton2" type="Button" parent="ButtonContainer"]
+[node name="UpgradeButton4" type="Button" parent="ButtonContainer"]
 margin_top = 50.0
-margin_right = 251.0
+margin_right = 603.0
 margin_bottom = 96.0
 theme = SubResource( 2 )
-text = "Upgrade 2"
+text = "75 Coins : +Bullet Speed"
+
+[node name="UpgradeButton1" type="Button" parent="ButtonContainer"]
+margin_top = 100.0
+margin_right = 603.0
+margin_bottom = 146.0
+theme = SubResource( 2 )
+text = "100 Coins : +1 Coin Per Kill"
+
+[node name="UpgradeButton6" type="Button" parent="ButtonContainer"]
+margin_top = 150.0
+margin_right = 603.0
+margin_bottom = 196.0
+theme = SubResource( 2 )
+text = "100 Coins : -0.05s Attack Cooldown"
+
+[node name="UpgradeButton3" type="Button" parent="ButtonContainer"]
+margin_top = 200.0
+margin_right = 603.0
+margin_bottom = 246.0
+theme = SubResource( 2 )
+text = "150 Coins : -1s Time Penalty on Hit"
+
+[node name="UpgradeButton2" type="Button" parent="ButtonContainer"]
+margin_top = 250.0
+margin_right = 603.0
+margin_bottom = 296.0
+theme = SubResource( 2 )
+text = "200 Coins : +1 Second Per Kill"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="UpgradeButton5" type="Button" parent="ButtonContainer"]
+margin_top = 300.0
+margin_right = 603.0
+margin_bottom = 346.0
+theme = SubResource( 2 )
+text = "500 Coins : +1 Bullet Damage"
+
 [node name="ExitButton" type="Button" parent="ButtonContainer"]
-margin_top = 100.0
-margin_right = 251.0
-margin_bottom = 146.0
+margin_top = 350.0
+margin_right = 603.0
+margin_bottom = 396.0
 theme = SubResource( 2 )
 text = "Exit Shop"
 
@@ -90,6 +125,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="ButtonContainer/UpgradeButton7" to="." method="_on_UpgradeButton7_pressed"]
+[connection signal="pressed" from="ButtonContainer/UpgradeButton4" to="." method="_on_UpgradeButton4_pressed"]
 [connection signal="pressed" from="ButtonContainer/UpgradeButton1" to="." method="_on_UpgradeButton1_pressed"]
+[connection signal="pressed" from="ButtonContainer/UpgradeButton6" to="." method="_on_UpgradeButton6_pressed"]
+[connection signal="pressed" from="ButtonContainer/UpgradeButton3" to="." method="_on_UpgradeButton3_pressed"]
 [connection signal="pressed" from="ButtonContainer/UpgradeButton2" to="." method="_on_UpgradeButton2_pressed"]
+[connection signal="pressed" from="ButtonContainer/UpgradeButton5" to="." method="_on_UpgradeButton5_pressed"]
 [connection signal="pressed" from="ButtonContainer/ExitButton" to="." method="_on_ExitButton_pressed"]

@@ -16,7 +16,7 @@ var velocity = Vector2()
 
 func _on_hit_body_entered(body):
 	if body.is_in_group("damage_enemy"):
-		health -= 1
+		health -= (1 + CoinSingleton.extra_bullet_damage)
 
 func _on_vision_body_entered(body):
 	if body == (player):

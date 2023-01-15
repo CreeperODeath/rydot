@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 onready var animation = $AnimatedSprite
-
+onready var BombInstance = preload("res://assets/Enemys/BoomBot Explosion.tscn")
 
 
 func _ready():
@@ -17,5 +17,9 @@ func _on_Search_body_entered(area):
 
 
 func _on_AnimatedSprite_animation_finished():
+	if animation.animation == ("Loop"):
+		var bomb = BombInstance.instance()
+		bomb.position = self.position
+		get_parent().add_child(bomb)
 	if animation.animation == ("Open"):
 		animation.play("Loop")

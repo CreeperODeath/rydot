@@ -3,11 +3,10 @@ extends Node
 export var coins = 0
 export var extra_coins = 0
 export var extra_time = 0
+export var extra_start_time = 0
 export var extra_bullet_speed = 0
 export var extra_bullet_damage = 0
-export var extra_bullet_size = 0
 export var extra_attack_speed = 0
-export var extra_speed = 0
 export var less_damage = 0
 
 func _ready():
@@ -31,20 +30,17 @@ func extra_coins_upgrade():
 func extra_time_upgrade():
 	extra_time += 1
 
+func extra_start_time_upgrade():
+	extra_start_time += 5
+
 func extra_bullet_speed_upgrade():
-	extra_bullet_speed += 1
+	extra_bullet_speed += 20
 
 func extra_bullet_damage_upgrade():
 	extra_bullet_damage += 1
 
-func extra_bullet_size_upgrade():
-	extra_bullet_size += 1
-
 func extra_attack_speed_upgrade():
-	extra_attack_speed += 1
-
-func extra_speed_upgrade():
-	extra_speed += 1
+	extra_attack_speed += 0.05
 
 func less_damage_upgrade():
 	less_damage += 1

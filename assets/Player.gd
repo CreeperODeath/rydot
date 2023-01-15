@@ -15,6 +15,8 @@ var x_dir = 0
 var y_dir = 0
 
 func _ready():
+	print("player ready")
+	WeaponTimer1.wait_time = (0.5 - CoinSingleton.extra_attack_speed)
 	if debug:
 		max_speed = 500
 		get_node("CollisionShape2D").set_disabled(true)
@@ -105,11 +107,11 @@ func _on_hit_body_entered(body):
 	if Invin.is_stopped():
 		if body.is_in_group("damage_player"):
 			Invin.start()
-			world.time -= 10
+			world.time -= (10 - CoinSingleton.less_damage)
 
 
 func _on_hit_area_entered(area):
 	if Invin.is_stopped():
 		if area.is_in_group("damage_player"):
 			Invin.start()
-			world.time -= 10
+			world.time -= (10 - CoinSingleton.less_damage)
