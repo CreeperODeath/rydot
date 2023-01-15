@@ -40,6 +40,7 @@ local_spawn_active = true
 
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = 10.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Player/Timer" to="Player/Timer" method="_on_Timer_timeout"]

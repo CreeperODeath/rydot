@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/normal_one.wav-d15284bd8f85df77a5e0aaa444a36e6d.sample"
+path="res://.import/normal_one.wav-bdbff4c5f309fcdd99807658283f9100.sample"
 
 [deps]
 
-source_file="res://assets/audio/normal_one.wav"
-dest_files=[ "res://.import/normal_one.wav-d15284bd8f85df77a5e0aaa444a36e6d.sample" ]
+source_file="res://assets/Audio/normal_one.wav"
+dest_files=[ "res://.import/normal_one.wav-bdbff4c5f309fcdd99807658283f9100.sample" ]
 
 [params]
 
@@ -17,7 +17,5 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop_mode=0
-edit/loop_begin=0
-edit/loop_end=-1
+edit/loop=false
 compress/mode=0

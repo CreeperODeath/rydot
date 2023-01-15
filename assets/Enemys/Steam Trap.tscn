@@ -134,8 +134,9 @@ shape = SubResource( 26 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Search"]
 shape = SubResource( 27 )
 
-[node name="SteamSound" type="AudioStreamPlayer" parent="."]
+[node name="SteamSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+max_distance = 400.0
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="Search" to="." method="_on_Search_body_entered"]
