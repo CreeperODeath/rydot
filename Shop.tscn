@@ -1,10 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://maps/Rooms/Shop_Room.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Pause.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Shop.gd" type="Script" id=4]
-[ext_resource path="res://assets/spites/the boi.png" type="Texture" id=5]
+[ext_resource path="res://assets/spites/Shopkeep.png" type="Texture" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.88593
@@ -13,39 +13,27 @@ height = 6.69537
 [sub_resource type="CircleShape2D" id=2]
 radius = 39.0128
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 13, 20 )
-
-[sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ SubResource( 3 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=3]
 radius = 9.12793
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=4]
 radius = 25.2689
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.224806, 0.465116, 0.992248 )
 colors = PoolColorArray( 0.303711, 0, 1, 1, 1, 1, 1, 1, 0.866667, 0, 1, 1, 0.538086, 0, 1, 1 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=7]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 40.0
 orbit_velocity = 0.6
 orbit_velocity_random = 0.2
-color_ramp = SubResource( 8 )
+color_ramp = SubResource( 6 )
 
 [node name="Shop" type="Node2D"]
 script = ExtResource( 4 )
@@ -65,9 +53,8 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shop_Room/StaticBody2D/BuyZone"]
 shape = SubResource( 2 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Shop_Room/StaticBody2D"]
-frames = SubResource( 4 )
-flip_h = true
+[node name="Shopkeep" type="Sprite" parent="Shop_Room/StaticBody2D"]
+texture = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 426.649, 235.232 )
@@ -79,17 +66,17 @@ process_priority = 100
 position = Vector2( 511.278, 236.6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="PortalZone" type="Area2D" parent="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/PortalZone"]
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="PortalParticles" type="Particles2D" parent="StaticBody2D"]
 amount = 64
 lifetime = 4.0
-process_material = SubResource( 9 )
+process_material = SubResource( 7 )
 
 [connection signal="body_entered" from="Shop_Room/StaticBody2D/BuyZone" to="." method="_on_BuyZone_body_entered"]
 [connection signal="body_entered" from="StaticBody2D/PortalZone" to="." method="_on_PortalZone_body_entered"]
