@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
+onready var LSparks = $Left_Sparks
+onready var RSparks = $Right_Sparks
 onready var world = get_node("/root/World")
 var speed = 80
 var health = 5
@@ -42,5 +44,9 @@ func _process(_delta):
 		velocity = move_and_slide(velocity)
 		if dir.x < 0:
 			sprite.set_flip_h(true)
+			LSparks.visible = false
+			RSparks.visible = true
 		else:
 			sprite.set_flip_h(false)
+			LSparks.visible = true
+			RSparks.visible = false
