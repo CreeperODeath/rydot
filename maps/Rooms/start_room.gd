@@ -6,12 +6,13 @@ onready var rng = RandomNumberGenerator.new()
 
 onready var timer = $Timer
 
-var debug = false
+var debug = true
 var detcted_possible_collision = false
 var collision = false
 
 var room_colided
 
+var room_reset = 0
 
 #---area 2D--------
 onready var left_detector = $left_room_detector
@@ -66,7 +67,7 @@ export var right_opening = false
 export var top_opening = false
 export var bottom_opening = false
 var all_rooms_spawned = false
-export var spawn_active = true
+export var spawn_active = false
 export var local_spawn_active = false
 var self_inst
 
@@ -89,6 +90,7 @@ func _physics_process(_delta):
 	
 	scan_collision()
 	get_neighbors()
+	room_error_fix()
 	close_room_openings()
 	if detcted_possible_collision == true:
 		
@@ -107,7 +109,9 @@ func _physics_process(_delta):
 		top_opening = room_var.room_sides_dic[room_id]["top"]
 		bottom_opening = room_var.room_sides_dic[room_id]["bottom"]
 		room_self = load(room_var.room_dic[room_id])
+		spawn_active = true
 		check_if_can_access()
+
 		
 		
 		if spawned_self == false and local_spawn_active == true:
@@ -273,59 +277,118 @@ func close_room_openings():
 	if left_room_id != "n/a":
 		if room_var.room_sides_dic[left_room_id]["right"] != true and left_opening_fix != true:
 			if spawned_self == true:
-				if  room_var.room_sides_dic[room_id]["left"] != false:
+				if left_opening_closed == true:
+					room_reset()
+				elif  room_var.room_sides_dic[room_id]["left"] != false:
 					self_inst.set_cell(1,7,7)
 					self_inst.set_cell(1,8,7)
 					self_inst.set_cell(1,9,7)
 					self_inst.set_cell(1,10,7)
 					self_inst.set_cell(1,11,7)
-					self_inst.set_cell(0,7,7)
-					self_inst.set_cell(0,8,7)
-					self_inst.set_cell(0,9,7)
-					self_inst.set_cell(0,10,7)
-					self_inst.set_cell(0,11,7)
+					if debug == true:
+						self_inst.set_cell(0,7,7)
+						self_inst.set_cell(0,8,7)
+						self_inst.set_cell(0,9,7)
+						self_inst.set_cell(0,10,7)
+						self_inst.set_cell(0,11,7)
+						print("closed left opening " + room_id)
+					else:
+						self_inst.set_cell(0,7,-1)
+						self_inst.set_cell(0,8,-1)
+						self_inst.set_cell(0,9,-1)
+						self_inst.set_cell(0,10,-1)
+						self_inst.set_cell(0,11,-1)
 					self_inst.update_dirty_quadrants()
-					print("closed left opening " + room_id)
+					
 					left_opening_fix = true
 					left_opening_closed = true
 	#patch right opening
 	if right_room_id != "n/a":
 		if room_var.room_sides_dic[right_room_id]["left"] != true and right_opening_fix != true:
 			if spawned_self == true:
-				if  room_var.room_sides_dic[room_id]["right"] != false:
+				if right_opening_closed == true:
+					room_reset()
+				elif  room_var.room_sides_dic[room_id]["right"] != false:
 					self_inst.set_cell(31,7,9)
 					self_inst.set_cell(31,8,9)
 					self_inst.set_cell(31,9,9)
 					self_inst.set_cell(31,10,9)
 					self_inst.set_cell(31,11,9)
-					self_inst.set_cell(32,7,9)
-					self_inst.set_cell(32,8,9)
-					self_inst.set_cell(32,9,9)
-					self_inst.set_cell(32,10,9)
-					self_inst.set_cell(32,11,9)
+					if debug == true:
+						self_inst.set_cell(32,7,9)
+						self_inst.set_cell(32,8,9)
+						self_inst.set_cell(32,9,9)
+						self_inst.set_cell(32,10,9)
+						self_inst.set_cell(32,11,9)
+						print("closed right opening " + room_id)
+					else:
+						self_inst.set_cell(32,7,-1)
+						self_inst.set_cell(32,8,-1)
+						self_inst.set_cell(32,9,-1)
+						self_inst.set_cell(32,10,-1)
+						self_inst.set_cell(32,11,-1)
 					self_inst.update_dirty_quadrants()
-					print("closed right opening " + room_id)
+					
 					right_opening_fix = true
 					right_opening_closed = true
 		#patch bottom opening
-		if bottom_room_id != "n/a":
-			if room_var.room_sides_dic[bottom_room_id]["top"] != true and bottom_opening_fix != true:
-				if spawned_self == true:
-					if  room_var.room_sides_dic[room_id]["bottom"] != false:
-						self_inst.set_cell(14,17,13)
-						self_inst.set_cell(15,17,13)
-						self_inst.set_cell(16,17,13)
-						self_inst.set_cell(17,17,13)
-						self_inst.set_cell(18,17,13)
+	if bottom_room_id != "n/a":
+		if room_var.room_sides_dic[bottom_room_id]["top"] != true and bottom_opening_fix != true:
+			if spawned_self == true:
+				if bottom_opening_closed == true:
+					room_reset()
+				elif  room_var.room_sides_dic[room_id]["bottom"] != false:
+					self_inst.set_cell(14,17,13)
+					self_inst.set_cell(15,17,13)
+					self_inst.set_cell(16,17,13)
+					self_inst.set_cell(17,17,13)
+					self_inst.set_cell(18,17,13)
+					if debug == true:
 						self_inst.set_cell(14,18,13)
 						self_inst.set_cell(15,18,13)
 						self_inst.set_cell(16,18,13)
 						self_inst.set_cell(17,18,13)
 						self_inst.set_cell(18,18,13)
-						self_inst.update_dirty_quadrants()
 						print("closed bottom opening " + room_id)
-						bottom_opening_fix = true
-						bottom_opening_closed = true
+					else:
+						self_inst.set_cell(14,18,-1)
+						self_inst.set_cell(15,18,-1)
+						self_inst.set_cell(16,18,-1)
+						self_inst.set_cell(17,18,-1)
+						self_inst.set_cell(18,18,-1)
+
+					self_inst.update_dirty_quadrants()
+					bottom_opening_fix = true
+					bottom_opening_closed = true
+	#top_room_patch
+	if top_room_id != "n/a":
+		if room_var.room_sides_dic[top_room_id]["bottom"] != true and top_opening_fix != true:
+			if spawned_self == true:
+				if top_opening_closed == true:
+					room_reset()
+				elif  room_var.room_sides_dic[room_id]["top"] != false:
+					self_inst.set_cell(14,1,13)
+					self_inst.set_cell(15,1,13)
+					self_inst.set_cell(16,1,13)
+					self_inst.set_cell(17,1,13)
+					self_inst.set_cell(18,1,13)
+					if debug == true:
+						self_inst.set_cell(14,0,13)
+						self_inst.set_cell(15,0,13)
+						self_inst.set_cell(16,0,13)
+						self_inst.set_cell(17,0,13)
+						self_inst.set_cell(18,0,13)
+						print("closed top opening " + room_id)
+					else:
+						self_inst.set_cell(14,0,-1)
+						self_inst.set_cell(15,0,-1)
+						self_inst.set_cell(16,0,-1)
+						self_inst.set_cell(17,0,-1)
+						self_inst.set_cell(18,0,-1)
+					self_inst.update_dirty_quadrants()
+					
+					top_opening_fix = true
+					top_opening_closed = true
 
 func get_neighbors():
 	var left_areas = left_detector.get_overlapping_areas()
@@ -334,7 +397,7 @@ func get_neighbors():
 			if left_room_id != area.get_parent().room_id:
 				left_room_id = area.get_parent().room_id
 				left_opening_fix = false
-				#print(left_room_id)
+				print(left_room_id)
 			
 			
 	var right_areas = right_detector.get_overlapping_areas()
@@ -371,8 +434,9 @@ func scan_collision():
 		if area.is_in_group("room"):
 			detcted_possible_collision = true
 			room_colided = area.get_parent()
+			collision_check()
 			print("detected self")
-			break
+			
 
 func collision_check():
 	
@@ -426,8 +490,48 @@ func check_if_can_access():
 
 	
 func delete_self():
+	if debug:
+		print("deleteing self")
 	room_var.room_count -= 1
 	if spawned_self == true:
 		self_inst.queue_free()
 	queue_free()
-	
+
+func room_reset():
+	left_opening_fix = false
+	left_opening_closed = false
+	right_opening_fix = false
+	right_opening_closed = false
+	top_opening_fix = false
+	top_opening_closed = false
+	bottom_opening_fix = false
+	bottom_opening_closed = false
+
+	left_room_id = "n/a"
+	right_room_id = "n/a"
+	top_room_id = "n/a"
+	bottom_room_id = "n/a"
+
+
+
+	print("room_reset" + str(room_reset))
+	self_inst.queue_free()
+	spawned_self = false
+	room_reset += 1
+	spawn_self()	
+
+func room_error_fix():
+	if spawned_self == true:
+		if left_opening_fix == false and left_opening_closed == true:
+			
+			room_reset()
+		if right_opening_fix == false and right_opening_closed == true:
+			
+			room_reset()
+		if top_opening_fix == false and top_opening_closed == true:
+			
+			room_reset()
+		if bottom_opening_fix == false and bottom_opening_closed == true:
+			
+			room_reset()
+

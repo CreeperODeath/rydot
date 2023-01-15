@@ -800,9 +800,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 } ]
 42/z_index = 0
 
-[node name="Pillar down-left" type="TileMap" groups=[
-"map",
-]]
+[node name="Pillar down-left" type="TileMap" groups=["map"]]
 position = Vector2( 13.6646, -0.420456 )
 z_index = -10
 z_as_relative = false

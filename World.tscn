@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://maps/Rooms/room_placeholder.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/Enemys/Saw Bot.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/classes/room_variables.gd" type="Script" id=10]
 [ext_resource path="res://Pause.tscn" type="PackedScene" id=11]
+[ext_resource path="res://loading_time.gd" type="Script" id=12]
 
 [node name="World" type="Node2D"]
 position = Vector2( 0, -2 )
@@ -32,8 +33,13 @@ collision_mask = 17
 position = Vector2( 72, 104 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 240, 135 )
+position = Vector2( -1985, 85 )
 collision_mask = 17
+
+[node name="Timer" type="Timer" parent="Player"]
+one_shot = true
+autostart = true
+script = ExtResource( 12 )
 
 [node name="room detector" parent="." instance=ExtResource( 2 )]
 room_id = "start_room"
@@ -60,3 +66,4 @@ position = Vector2( 264.854, 178.933 )
 position = Vector2( 352.594, 190.531 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Player/Timer" to="Player/Timer" method="_on_Timer_timeout"]

@@ -1,6 +1,6 @@
 extends Node2D
 
-
+onready var player = $Player
 
 
 export var time = (60 + CoinSingleton.extra_start_time)
@@ -12,4 +12,6 @@ func _on_Timer_timeout():
 
 
 func _ready():
-	pass
+	if is_instance_valid(player):
+		if player.debug == true:
+			time = 999999999999

@@ -7,6 +7,7 @@ onready var BulletInstance = preload("res://assets/Bullet.tscn")
 onready var player_sprite = $AnimatedSprite
 onready var WeaponTimer1 = $WeaponTimer1
 onready var Invin = $Invincibility
+onready var player_camera = $Camera2D
 onready var world = get_node("/root/World")
 var velocity = Vector2()
 var facing_left = true
@@ -20,6 +21,7 @@ func _ready():
 	if debug:
 		max_speed = 500
 		get_node("CollisionShape2D").set_disabled(true)
+		player_camera.set_zoom(Vector2(.5,.5))
 
 func check_win():
 	pass

@@ -13,10 +13,12 @@ extents = Vector2( 177.5, 108.5 )
 radius = 567.081
 
 [node name="room detector" type="Node2D"]
+z_index = 1
+z_as_relative = false
 script = ExtResource( 3 )
+spawn_active = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-visible = false
 margin_left = 70.0
 margin_top = 57.0
 margin_right = 370.0

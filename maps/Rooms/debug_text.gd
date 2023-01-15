@@ -14,18 +14,22 @@ func _process(_delta):
 		+"left_spawned: " + str(x.left_spawned) +"\n"\
 		+"left_opening_fix: " + str(x.left_opening_fix) +"\n"\
 		+"left_opening_closed: " + str(x.left_opening_closed) + "\n"\
+		+"left_room_id: " + str(x.left_room_id) + "\n"\
 		+"right_spawned: " + str(x.right_spawned) +"\n"\
 		+"right_opening: " + str(x.right_spawned) +"\n"\
 		+"right_opening_fix: " + str(x.right_opening_fix) +"\n"\
 		+"right_opening_closed: " + str(x.right_opening_closed) +"\n"\
+		+"right_room_id: " + str(x.right_room_id) + "\n"\
 		+"top_spawned: " + str(x.top_spawned) +"\n"\
 		+"top_opening: " + str(x.top_spawned) +"\n"\
 		+"top_opening_fix: " + str(x.top_opening_fix) +"\n"\
 		+"top_opening_closed: " + str(x.top_opening_closed) +"\n"\
+		+"top_room_id: " + str(x.top_room_id) + "\n"\
 		+"bottom_spawned " + str(x.bottom_spawned) +"\n"\
 		+"bottom_opening: " + str(x.bottom_spawned) +"\n"\
 		+"bottom_opening_fix: " + str(x.bottom_opening_fix) +"\n"\
 		+"bottom_opening_closed: " + str(x.bottom_opening_closed) +"\n"\
+		+"bottom_room_id: " + str(x.bottom_room_id) + "\n"\
 		+ "left_opening: " + str(x.left_opening) +"\n"\
 		+ "right_opening: " + str(x.right_opening) +"\n"\
 		+ "top_opening: " + str(x.top_opening) +"\n"\
@@ -37,6 +41,9 @@ func _process(_delta):
 		+ "right_room_detected:  " + str(x.right_room_detected) +"\n"\
 		+ "top_room_detected:  " + str(x.top_room_detected) +"\n"\
 		+ "bottom_room_detected:  " + str(x.bottom_room_detected) +"\n"\
-		+ "spawned_self: " + str(x.spawned_self) +"\n"
+		+ "spawned_self: " + str(x.spawned_self) +"\n"\
+		+ "room_reset: " + str(x.room_reset) + "\n"
 	set_text(text_debug)
+	if is_instance_valid(x.self_inst):
+		set_global_position(x.self_inst.get_global_position())
 	
