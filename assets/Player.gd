@@ -9,6 +9,8 @@ onready var WeaponTimer1 = $WeaponTimer1
 onready var Invin = $Invincibility
 onready var player_camera = $Camera2D
 onready var world = get_node("/root/World")
+onready var AttackSound = $AttackSound
+onready var HitSound = $HitSound
 var velocity = Vector2()
 var facing_left = true
 var firing = false
@@ -37,6 +39,7 @@ func _process(_delta):
 		firing = false
 	if firing == true and WeaponTimer1.is_stopped():
 		WeaponTimer1.start()
+		AttackSound.play()
 		var Bullet = BulletInstance.instance()
 		if Input.is_action_pressed("fire_right"):
 			Bullet.position = self.position
@@ -114,6 +117,7 @@ func _on_hit_body_entered(body):
 		if body.is_in_group("damage_player"):
 			Invin.start()
 			world.time -= (10 - CoinSingleton.less_damage)
+			HitSound.play()
 
 
 func _on_hit_area_entered(area):
@@ -121,3 +125,4 @@ func _on_hit_area_entered(area):
 		if area.is_in_group("damage_player"):
 			Invin.start()
 			world.time -= (10 - CoinSingleton.less_damage)
+			HitSound.play()

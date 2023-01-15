@@ -1,14 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://maps/Rooms/room_placeholder.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/Enemys/Steam Trap.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/Enemys/LaserDrone.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/Enemys/Halogen Jelly.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/Enemys/Drone Laser.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/Enemys/BoomBot.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/Enemys/Saw Bot.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/Audio/DeathSound.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/classes/room_variables.gd" type="Script" id=10]
 [ext_resource path="res://Pause.tscn" type="PackedScene" id=11]
 [ext_resource path="res://loading_time.gd" type="Script" id=12]
@@ -25,16 +20,10 @@ script = ExtResource( 10 )
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="BoomBot" parent="." instance=ExtResource( 8 )]
-position = Vector2( 336.758, 84.8055 )
-collision_mask = 17
-
-[node name="Steam Trap" parent="." instance=ExtResource( 4 )]
-position = Vector2( 72, 104 )
-
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( -1985, 85 )
 collision_mask = 17
+debug = false
 
 [node name="Timer" type="Timer" parent="Player"]
 one_shot = true
@@ -49,21 +38,9 @@ top_opening = true
 bottom_opening = true
 local_spawn_active = true
 
-[node name="Halogen Jelly" parent="." instance=ExtResource( 6 )]
-position = Vector2( 180.859, 159.8 )
-
-[node name="Drone Laser" parent="." instance=ExtResource( 7 )]
-position = Vector2( 185.102, 109.596 )
-
-[node name="Saw Bot" parent="." instance=ExtResource( 9 )]
-position = Vector2( 296.296, 135.196 )
-collision_mask = 23
-
-[node name="Fish Boss" parent="." instance=ExtResource( 9 )]
-position = Vector2( 264.854, 178.933 )
-
-[node name="LaserDrone" parent="." instance=ExtResource( 5 )]
-position = Vector2( 352.594, 190.531 )
+[node name="PlayerDeath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Player/Timer" to="Player/Timer" method="_on_Timer_timeout"]
+[connection signal="finished" from="PlayerDeath" to="." method="_on_PlayerDeath_finished"]

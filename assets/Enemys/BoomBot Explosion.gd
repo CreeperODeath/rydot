@@ -2,7 +2,6 @@ extends StaticBody2D
 
 
 func _ready():
-	print("boom")
 	$BoomTimer.start()
 
 

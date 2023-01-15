@@ -1,7 +1,9 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://assets/Enemys/BoomBot.gd" type="Script" id=1]
 [ext_resource path="res://assets/spites/Boom Bot.png" type="Texture" id=2]
+[ext_resource path="res://assets/Audio/BoomBotExplode.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/Audio/EnemyDeathSound.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.09902
@@ -145,7 +147,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 27 )
 animation = "idle"
-frame = 7
+frame = 3
 playing = true
 
 [node name="vision" type="Area2D" parent="."]
@@ -169,6 +171,12 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="explode_radius"]
 shape = SubResource( 30 )
+
+[node name="BoomSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="vision" to="." method="_on_vision_body_entered"]

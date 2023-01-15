@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/spites/the boi.png" type="Texture" id=2]
 [ext_resource path="res://assets/PixeloidSans-nR3g1.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://time_display.gd" type="Script" id=4]
 [ext_resource path="res://assets/coin_display.gd" type="Script" id=5]
+[ext_resource path="res://assets/Audio/PlayerShootSound.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/Audio/PlayerHit.wav" type="AudioStream" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.75
@@ -14,43 +16,45 @@ height = 6.0
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 13, 19 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
 region = Rect2( 13, 0, 13, 19 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
 region = Rect2( 26, 0, 13, 19 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
 region = Rect2( 39, 0, 13, 19 )
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
 "name": "idle",
 "speed": 1.0
 }, {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
 } ]
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=7]
 size = 32
 font_data = ExtResource( 3 )
 
-[sub_resource type="Theme" id=9]
-default_font = SubResource( 8 )
+[sub_resource type="Theme" id=8]
+default_font = SubResource( 7 )
 
-[sub_resource type="CapsuleShape2D" id=10]
+[sub_resource type="CapsuleShape2D" id=9]
 radius = 5.40073
 height = 6.23498
 
-[node name="Player" type="KinematicBody2D" groups=["player"]]
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
 collision_mask = 6
 script = ExtResource( 1 )
 debug = true
@@ -59,7 +63,7 @@ debug = true
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 7 )
+frames = SubResource( 6 )
 animation = "idle"
 playing = true
 
@@ -70,7 +74,7 @@ margin_left = 33.5281
 margin_top = 27.5281
 margin_right = 233.528
 margin_bottom = 127.528
-theme = SubResource( 9 )
+theme = SubResource( 8 )
 text = "Time: ? "
 script = ExtResource( 4 )
 
@@ -79,7 +83,7 @@ margin_left = 234.0
 margin_top = 28.0
 margin_right = 462.0
 margin_bottom = 147.0
-theme = SubResource( 9 )
+theme = SubResource( 8 )
 text = "Coins:"
 script = ExtResource( 5 )
 __meta__ = {
@@ -98,10 +102,18 @@ current = true
 zoom = Vector2( 0.4, 0.4 )
 smoothing_speed = 10.0
 
-[node name="hit" type="Area2D" parent="." groups=["player"]]
+[node name="hit" type="Area2D" parent="." groups=[
+"player",
+]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit"]
-shape = SubResource( 10 )
+shape = SubResource( 9 )
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
 
 [connection signal="area_entered" from="hit" to="." method="_on_hit_area_entered"]
 [connection signal="body_entered" from="hit" to="." method="_on_hit_body_entered"]

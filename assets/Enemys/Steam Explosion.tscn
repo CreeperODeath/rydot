@@ -2,22 +2,22 @@
 
 [ext_resource path="res://assets/Enemys/BoomBot Explosion.gd" type="Script" id=1]
 
-[sub_resource type="CircleShape2D" id=35]
+[sub_resource type="CircleShape2D" id=1]
 radius = 48.8917
 
-[sub_resource type="Gradient" id=36]
+[sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 1, 1, 1, 1, 0.678431, 0.678431, 0.678431, 0.372549 )
 
-[sub_resource type="GradientTexture" id=32]
-gradient = SubResource( 36 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="Curve" id=37]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -5.18182, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=34]
-curve = SubResource( 37 )
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=38]
+[sub_resource type="ParticlesMaterial" id=6]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -27,8 +27,8 @@ angular_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
-scale_curve = SubResource( 34 )
-color_ramp = SubResource( 32 )
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
 
 [node name="Steam Explosion" type="StaticBody2D" groups=[
 "damage_player",
@@ -38,13 +38,13 @@ script = ExtResource( 1 )
 
 [node name="BoomRadius" type="CollisionShape2D" parent="."]
 position = Vector2( 0.166855, -0.166855 )
-shape = SubResource( 35 )
+shape = SubResource( 1 )
 
 [node name="ExplosionParticles" type="Particles2D" parent="."]
 amount = 48
 lifetime = 0.6
 explosiveness = 0.6
-process_material = SubResource( 38 )
+process_material = SubResource( 6 )
 
 [node name="BoomTimer" type="Timer" parent="."]
 wait_time = 0.55

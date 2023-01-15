@@ -2,6 +2,7 @@ extends StaticBody2D
 
 onready var animation = $AnimatedSprite
 onready var BombInstance = preload("res://assets/Enemys/Steam Explosion.tscn")
+onready var SteamExplosion = $SteamSound
 
 
 func _ready():
@@ -21,5 +22,6 @@ func _on_AnimatedSprite_animation_finished():
 		var bomb = BombInstance.instance()
 		bomb.position = self.position
 		get_parent().add_child(bomb)
+		SteamExplosion.play()
 	if animation.animation == ("Open"):
 		animation.play("Loop")

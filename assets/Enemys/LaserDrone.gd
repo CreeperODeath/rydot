@@ -3,6 +3,8 @@ extends KinematicBody2D
 onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
 onready var world = get_node("/root/World")
+onready var DeathSound = preload("res://assets/Audio/EnemyDeathSound.tscn")
+onready var attacksound = $AttackSound
 onready var LaserInstance = preload("res://assets/Enemys/Drone Laser.tscn")
 var speed = 50
 var health = 5
@@ -48,6 +50,7 @@ func _on_AnimatedSprite_animation_finished():
 		elif player.global_position.x > self.global_position.x:
 				Laser.direction = Vector2(1, 0)
 		get_parent().add_child(Laser)
+		attacksound.play()
 
 func _ready():
 	pass
@@ -57,6 +60,8 @@ func _process(_delta):
 		CoinSingleton.laser_drone_coin()
 		if is_instance_valid(world):
 			world.time += CoinSingleton.extra_time
+		var Death = DeathSound.instance()
+		get_parent().add_child(Death)
 		queue_free()
 	if player.global_position.x < self.global_position.x:
 		sprite.set_flip_h(true)

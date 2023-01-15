@@ -3,6 +3,8 @@ extends KinematicBody2D
 onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
 onready var time = $AttackTimer
+onready var AttackSound = $AttackSound
+onready var DeathSound = preload("res://assets/Audio/EnemyDeathSound.tscn")
 onready var world = get_node("/root/World")
 onready var AttackInstance = preload("res://assets/Enemys/Ball_Lightning.tscn")
 var speed = 40
@@ -49,6 +51,8 @@ func _process(_delta):
 		CoinSingleton.halogen_jelly_coin()
 		if is_instance_valid(world):
 			world.time += CoinSingleton.extra_time
+		var Death = DeathSound.instance()
+		get_parent().add_child(Death)
 		queue_free()
 	if stop == false:
 		if chase == true:
@@ -66,4 +70,5 @@ func _process(_delta):
 			Ball_Lightning.position = self.position
 			Ball_Lightning.direction = (player.global_position - global_position).normalized()
 			get_parent().add_child(Ball_Lightning)
+			AttackSound.play()
 

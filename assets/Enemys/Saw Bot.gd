@@ -4,6 +4,7 @@ onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
 onready var LSparks = $Left_Sparks
 onready var RSparks = $Right_Sparks
+onready var DeathSound = preload("res://assets/Audio/EnemyDeathSound.tscn")
 onready var world = get_node("/root/World")
 var speed = 80
 var health = 5
@@ -36,6 +37,8 @@ func _process(_delta):
 		CoinSingleton.saw_bot_coin()
 		if is_instance_valid(world):
 			world.time += CoinSingleton.extra_time
+		var Death = DeathSound.instance()
+		get_parent().add_child(Death)
 		queue_free()
 		
 	if chase == true:

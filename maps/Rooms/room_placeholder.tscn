@@ -3,66 +3,79 @@
 [ext_resource path="res://maps/Rooms/debug_text.gd" type="Script" id=1]
 [ext_resource path="res://maps/Rooms/start_room.gd" type="Script" id=3]
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 227.5, 119.5 )
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 177.5, 108.5 )
 
-[sub_resource type="CircleShape2D" id=14]
+[sub_resource type="CircleShape2D" id=3]
 radius = 567.081
 
 [node name="room detector" type="Node2D"]
 z_index = 1
 z_as_relative = false
 script = ExtResource( 3 )
-spawn_active = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 70.0
 margin_top = 57.0
 margin_right = 370.0
 margin_bottom = 257.0
 bbcode_enabled = true
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="room_indicator" type="Area2D" parent="." groups=["room"]]
+[node name="room_indicator" type="Area2D" parent="." groups=[
+"room",
+]]
 position = Vector2( 265, 413 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="room_indicator" groups=["room"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="room_indicator" groups=[
+"room",
+]]
 position = Vector2( 2, -256 )
-shape = SubResource( 13 )
+shape = SubResource( 1 )
 
-[node name="left_room_detector" type="Area2D" parent="." groups=["room_detector"]]
+[node name="left_room_detector" type="Area2D" parent="." groups=[
+"room_detector",
+]]
 position = Vector2( 496, -3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="left_room_detector"]
 position = Vector2( -678, 149 )
-shape = SubResource( 12 )
+shape = SubResource( 2 )
 
-[node name="right_room_detector" type="Area2D" parent="." groups=["room_detector"]]
+[node name="right_room_detector" type="Area2D" parent="." groups=[
+"room_detector",
+]]
 position = Vector2( -494, 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="right_room_detector"]
 position = Vector2( 1198.5, 155.5 )
-shape = SubResource( 12 )
+shape = SubResource( 2 )
 
-[node name="top_room_detector" type="Area2D" parent="." groups=["room_detector"]]
+[node name="top_room_detector" type="Area2D" parent="." groups=[
+"room_detector",
+]]
 position = Vector2( -2, -300 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="top_room_detector"]
 position = Vector2( 252, 197 )
-shape = SubResource( 12 )
+shape = SubResource( 2 )
 
 [node name="bottom_room_detector" type="Area2D" parent="."]
 position = Vector2( 11, 306 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom_room_detector"]
 position = Vector2( 254, 107 )
-shape = SubResource( 12 )
+shape = SubResource( 2 )
 
 [node name="room_connectors" type="Node2D" parent="."]
 
@@ -82,7 +95,7 @@ position = Vector2( 265, 296 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector"]
 position = Vector2( 265, 159 )
-shape = SubResource( 14 )
+shape = SubResource( 3 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="room_indicator" to="." method="_on_room_indicator_area_entered"]

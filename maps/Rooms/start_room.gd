@@ -6,7 +6,7 @@ onready var rng = RandomNumberGenerator.new()
 
 onready var timer = $Timer
 
-var debug = true
+var debug = false
 var detcted_possible_collision = false
 var collision = false
 
