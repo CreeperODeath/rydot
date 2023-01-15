@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
+onready var world = get_node("/root/World")
 var speed = 80
 var health = 5
 var dir = Vector2()
@@ -31,7 +32,10 @@ func _ready():
 func _process(_delta):
 	if health <= 0:
 		CoinSingleton.saw_bot_coin()
+		if is_instance_valid(world):
+			world.time += CoinSingleton.extra_time
 		queue_free()
+		
 	if chase == true:
 		dir = (player.global_position - global_position).normalized()
 		velocity = speed*dir

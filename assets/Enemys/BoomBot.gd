@@ -50,6 +50,8 @@ func _ready():
 func _process(_delta):
 	if health <= 0:
 		CoinSingleton.boom_bot_coin()
+		if is_instance_valid(world):
+			world.time += CoinSingleton.extra_time
 		queue_free()
 	if boom == false:
 		if chase == true:
