@@ -96,7 +96,7 @@ var left_too_many = ["right_opening"]
 var right_too_many = ["left_opening"]
 var bottom_too_many = ["top_opening"]
 
-func _process(delta):
+func _process(_delta):
 	if debug == true:
 		print (room_count)
 

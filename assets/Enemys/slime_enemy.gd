@@ -16,13 +16,13 @@ var velocity = Vector2()
 export var speed = 10
 var distance_to_player
 
-func _process(delta):
+func _process(_delta):
 	if health <= 0:
 		if death_sound.playing == false:
 			death_sound.play()
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	if can_move:
 		movement()

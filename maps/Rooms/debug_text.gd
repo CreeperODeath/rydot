@@ -5,7 +5,7 @@ onready var x = get_parent()
 
 onready var text_debug 
 	
-func _process(delta):
+func _process(_delta):
 	if visible != true:
 		set_process(false)
 	text_debug = "room_id: " + str(x.room_id) +"\n" \

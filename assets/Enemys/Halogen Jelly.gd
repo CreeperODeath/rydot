@@ -44,12 +44,9 @@ func _on_Minimum_Range_body_exited(body):
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	if health <= 0:
-		if is_instance_valid(world):
-			world.coins
-			if world.coins != null:
-				world.coins += 20
+		CoinSingleton.halogen_jelly_coin()
 		queue_free()
 	if stop == false:
 		if chase == true:

@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 onready var player = get_node("/root/World/Player")
 onready var sprite = $AnimatedSprite
-onready var time = $WeaponTimer
 onready var world = get_node("/root/World")
 onready var LaserInstance = preload("res://assets/Enemys/Drone Laser.tscn")
 var speed = 50
@@ -38,14 +37,7 @@ func _on_Minimum_Range_body_entered(body):
 func _on_Minimum_Range_body_exited(body):
 	if body == (player):
 		stop = false
-		
-func _on_Stop_Range_body_entered(body):
-	pass # Replace with function body.
 
-
-func _on_Stop_Range_body_exited(body):
-	pass # Replace with function body.
-	
 func _on_AnimatedSprite_animation_finished():
 	if sprite.animation == "Firing":
 		var Laser = LaserInstance.instance()
@@ -60,12 +52,9 @@ func _on_AnimatedSprite_animation_finished():
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	if health <= 0:
-		if is_instance_valid(world):
-			world.coins
-			if world.coins != null:
-				world.coins += 25
+		CoinSingleton.laser_drone_coin()
 		queue_free()
 	if player.global_position.x < self.global_position.x:
 		sprite.set_flip_h(true)

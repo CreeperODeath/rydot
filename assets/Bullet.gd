@@ -4,12 +4,11 @@ var direction = Vector2()
 var speed = 320.0
 var velocity = Vector2()
 var pierce = 0
-onready var HitTimer = $HitTimer
 
 func _ready():
 	pass 
 
-func _process(delta):
+func _process(_delta):
 	velocity.x = direction.x * speed
 	velocity.y = direction.y * speed
 	velocity = move_and_slide(velocity, velocity)

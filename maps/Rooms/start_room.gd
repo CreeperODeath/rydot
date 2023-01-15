@@ -82,7 +82,7 @@ func _ready():
 	room_var.room_count += 1
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	
 	

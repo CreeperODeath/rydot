@@ -5,7 +5,7 @@ var time
 var time_display_min
 var time_display_sec
 onready var world = get_node("/root/World")
-func _process(delta):
+func _process(_delta):
 	if is_instance_valid(world):
 		time = world.time
 	if time != null:

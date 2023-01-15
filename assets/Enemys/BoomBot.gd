@@ -35,10 +35,7 @@ func _on_AnimatedSprite_animation_finished():
 		var bomb = BombInstance.instance()
 		bomb.position = self.position
 		get_parent().add_child(bomb)
-		if is_instance_valid(world):
-			world.coins
-			if world.coins != null:
-				world.coins += 5
+		CoinSingleton.boom_bot_coin()
 		queue_free()
 
 func _on_explode_radius_body_entered(body):
@@ -50,12 +47,9 @@ func _on_explode_radius_body_entered(body):
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	if health <= 0:
-		if is_instance_valid(world):
-			world.coins
-			if world.coins != null:
-				world.coins += 5
+		CoinSingleton.boom_bot_coin()
 		queue_free()
 	if boom == false:
 		if chase == true:

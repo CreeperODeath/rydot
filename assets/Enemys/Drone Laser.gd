@@ -8,7 +8,7 @@ var pierce = 0
 func _ready():
 	pass 
 
-func _process(delta):
+func _process(_delta):
 	velocity.x = direction.x * speed
 	velocity.y = direction.y * speed
 	velocity = move_and_slide(velocity, velocity)
