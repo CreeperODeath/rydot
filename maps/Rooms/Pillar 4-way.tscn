@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/spites/rylan_texture.png" type="Texture" id=1]
 [ext_resource path="res://assets/spites/halee_texture.png" type="Texture" id=2]
 [ext_resource path="res://assets/Enemys/BoomBot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/Enemys/Steam Trap.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -798,7 +799,9 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 } ]
 42/z_index = 0
 
-[node name="Pillar 4-way" type="TileMap" groups=["map"]]
+[node name="Pillar 4-way" type="TileMap" groups=[
+"map",
+]]
 position = Vector2( 13.6646, -0.420456 )
 z_index = -10
 z_as_relative = false
@@ -812,11 +815,11 @@ tile_data = PoolIntArray( 14, 7, 0, 15, 4, 0, 16, 3, 0, 17, 4, 0, 18, 9, 0, 6553
 [node name="BoomBot" parent="." instance=ExtResource( 3 )]
 position = Vector2( 141.335, 211.42 )
 
-[node name="BoomBot2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 134.335, 77.9205 )
-
 [node name="BoomBot3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 392.835, 79.9205 )
 
-[node name="BoomBot4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 398.835, 230.92 )
+[node name="Steam Trap" parent="." instance=ExtResource( 4 )]
+position = Vector2( 134, 88 )
+
+[node name="Steam Trap2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 391, 216 )
